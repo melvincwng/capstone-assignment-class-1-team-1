@@ -1,0 +1,13 @@
+# An automated GitHub Actions script that auto-assigns reviewers for a PR
+name: Auto Assign
+on:
+  pull_request_target:
+    types: [opened]
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: wow-actions/auto-assign@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CONFIG_FILE: .github/auto-assign.yml
