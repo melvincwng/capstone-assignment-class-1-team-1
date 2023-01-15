@@ -21,4 +21,17 @@ app.get("/movies", function (req, res) {
   });
 });
 
+
+// B) Sort Movies A to Z
+app.get("/movies/AtoZ", function (req, res) {
+  movie.sortMoviesAtoZ(function (err, result) {
+    if (!err) {
+      res.send(result);
+    } else {
+      console.log(err);
+      res.status(500).send({ message: "An unexpected error has occurred!" });
+    }
+  });
+});
+
 module.exports = app;
