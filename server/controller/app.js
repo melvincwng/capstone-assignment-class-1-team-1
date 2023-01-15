@@ -21,7 +21,7 @@ app.get("/movies", function (req, res) {
   });
 });
 
-app.get("/movies/ztoa", function (req, res) {
+app.get("/movies/ZtoA", function (req, res) {
   movie.getAllMoviesZtoA(function (err, result) {
     if (!err) {
       res.send(result);
