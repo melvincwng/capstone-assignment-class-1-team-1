@@ -21,4 +21,15 @@ app.get("/movies", function (req, res) {
   });
 });
 
+app.get("/movies/ztoa", function (req, res) {
+  movie.getAllMoviesZtoA(function (err, result) {
+    if (!err) {
+      res.send(result);
+    } else {
+      console.log(err);
+      res.status(500).send({ message: "An unexpected error has occurred!" });
+    }
+  });
+});
+
 module.exports = app;
