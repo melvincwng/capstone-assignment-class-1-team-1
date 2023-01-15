@@ -7,6 +7,7 @@ addAssignees: author
 # A list of reviewers to be added to issues/PRs (GitHub Username)
 reviewers:
   - melvincwng
+  - vincentkua
 
 # A number of reviewers added to the issues/PRs
 # Set 0 to add all the reviewers (default: 0)
