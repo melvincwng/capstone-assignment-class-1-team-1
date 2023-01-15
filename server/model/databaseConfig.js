@@ -4,7 +4,7 @@ var dbconnect = {
     var conn = mysql.createConnection({
       host: "localhost",
       user: "root", // Change to your specific MySQL workbench username for it to work
-      password: "Lyn!91195084", // Change to your specific MYSQL workbench password for it to work
+      password: "XYZ123", // Change to your specific MYSQL workbench password for it to work
       database: "bdd_assignment",
     });
     return conn;
