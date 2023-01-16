@@ -32,6 +32,18 @@ app.get("/movies/AtoZ", function (req, res) {
       res.status(500).send({ message: "An unexpected error has occurred!" });
     }
   });
+
+  // C) Sort Movies from Z to A
+  app.get("/movies/ZtoA", function (req, res) {
+    movie.sortMoviesZtoA(function (err, result) {
+      if (!err) {
+        res.send(result);
+      } else {
+        console.log(err);
+        res.status(500).send({ message: "An unexpected error has occurred!" });
+      }
+    });
+  });
 });
 
 module.exports = app;
