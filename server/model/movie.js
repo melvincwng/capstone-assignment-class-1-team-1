@@ -34,7 +34,7 @@ var movieDB = {
         return callback(err, null);
       } else {
         console.log("Sorted A to Z!");
-        var sql = "SELECT * FROM movie ORDER BY name ASC"; //Search movie by name to sort by A to Z
+        var sql = "SELECT * FROM movie ORDER BY name ASC"; //Search movie by name to sort Ascending by A to Z
         conn.query(sql, function (err, result) {
           // Close the connection after querying to save connection resources
           conn.end();
