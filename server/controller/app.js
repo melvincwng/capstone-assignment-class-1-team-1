@@ -21,7 +21,8 @@ app.get("/movies", function (req, res) {
   });
 });
 
-// B) Sort Movies from A to Z
+
+// B) Sort Movies by Ascending A to Z
 app.get("/movies/AtoZ", function (req, res) {
   movie.sortMoviesAtoZ(function (err, result) {
     if (!err) {
