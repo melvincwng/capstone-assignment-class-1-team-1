@@ -1,22 +1,20 @@
-//webpack.config.js
+// webpack.config.js
 const { ProvidePlugin } = require('webpack');
 
 module.exports = {
     entry: {
-        App: '../server/model/databaseConfig.js',
+        App: './output/App.js',
     },
     output: {
-        
+        // default output to ./dist folder
         filename: '[name].js', // Retain original file name
     },
     mode: 'development',
     watch: true,
     plugins: [
         new ProvidePlugin({
-            host: "localhost",
-            user: "root", 
-            password: "winwin888", 
-            database: "bdd_assignment",
+            React: 'react',
+            ReactDOM: 'react-dom/client',
         }),
     ],
 };
