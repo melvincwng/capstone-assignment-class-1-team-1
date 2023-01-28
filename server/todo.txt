@@ -1,0 +1,1 @@
+1. Add documentation to inform user how to test backend endpoints via login mechanism (which utilizes cookie storing JWT)
