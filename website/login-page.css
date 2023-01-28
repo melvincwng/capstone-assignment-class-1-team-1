@@ -1,0 +1,234 @@
+* {
+  font-family: var(--bs-font-sans-serif);
+}
+
+.login-page-wrapper {
+  background: url("./src/img/loginPageBackground.jpg") no-repeat center fixed;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+}
+
+.company-logo {
+  height: 95px;
+  margin-left: 45px;
+}
+
+.top {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding-bottom: 100px;
+}
+
+.loginForm {
+  margin: 0 auto;
+  width: 450px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 5px;
+  padding: 60px 70px 40px;
+}
+
+.loginForm h1 {
+  color: white;
+  padding-bottom: 10px;
+}
+
+.input-text {
+  margin-bottom: 20px;
+}
+
+.input-text input {
+  width: 100%;
+  height: 45px;
+  background-color: #333;
+  color: white;
+  border-radius: 4px;
+  border: none;
+  outline: transparent;
+  text-indent: 16px;
+}
+
+.sign-in-button {
+  background-color: #e50914;
+  color: white;
+  width: 100%;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 12px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.remember-me-flexbox {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+#remember-me-checkbox {
+  width: 13px;
+  height: 13px;
+}
+
+#remember-me-checkbox:checked {
+  accent-color: #b3b3b3;
+}
+
+.coloured_text {
+  color: #b3b3b3;
+  font-size: 15px;
+}
+
+.need-help-link:hover {
+  color: #b3b3b3;
+}
+
+.new-to-netflix {
+  margin-bottom: 10px;
+  color: #8c8c8c;
+}
+
+.signup-link {
+  color: white;
+  text-decoration: none;
+}
+
+.signup-link:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.coloured_link {
+  color: #737373;
+}
+
+.captcha {
+  font-size: 13px;
+  color: #8c8c8c;
+}
+
+.captcha a {
+  text-decoration: none;
+}
+
+.captcha a:hover {
+  text-decoration: underline;
+}
+
+.warning-input {
+  display: none;
+  color: #e87c03;
+  margin-top: 0;
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+.help a {
+  text-decoration: none;
+}
+
+.help a:hover {
+  text-decoration: underline;
+}
+
+.bottom {
+  background-color: rgba(0, 0, 0, 0.9);
+  color: #737373;
+}
+
+.bottom-width {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px;
+}
+
+.telephone-link {
+  text-decoration: none;
+  color: #757575;
+}
+
+.telephone-link:hover {
+  color: #757575;
+  text-decoration: underline;
+}
+
+.bottom-flex {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 15px 0 0 0;
+  margin-bottom: 0;
+}
+
+.bottom-flex li {
+  list-style: none;
+}
+
+.bottom-list-item {
+  width: 25%;
+  margin-top: 10px;
+}
+
+.bottom-link {
+  text-decoration: none;
+  color: #737373;
+  font-size: 15px;
+}
+
+.bottom-link:hover {
+  text-decoration: underline;
+  color: #737373;
+}
+
+.select-language-dropdown {
+  font-family: "system-ui", "FontAwesome";
+  border-radius: 2px;
+  background-color: #000;
+  color: #757575;
+  font-size: 14.5px;
+  padding: 14px 20px 14px 14px;
+  margin: 30px 0 40px 0;
+  min-height: 40px;
+  border: 1px solid #333;
+}
+
+.select-language-dropdown option {
+  padding-left: 10px;
+}
+
+@media screen and (max-width: 740px) {
+  .login-page-wrapper {
+    background: black;
+  }
+
+  .company-logo {
+    margin-left: 22px;
+  }
+
+  .login-div {
+    width: 90%;
+    margin: 20px auto 0;
+  }
+
+  .loginForm {
+    padding: 0 10px 0 10px;
+    width: 100%;
+  }
+
+  .bottom {
+    border-top: 1px solid #737373;
+  }
+
+  .top {
+    padding-bottom: 90px;
+  }
+
+  .bottom-list-item {
+    width: 33.33% !important;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .bottom-list-item {
+    width: 50% !important;
+  }
+}
