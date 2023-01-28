@@ -97,10 +97,33 @@ export default function Footer() {
         </section>
       </div>
       <div className="text-center" style={{ padding: "0px 16px 16px" }}>
-        © 2023{" "}
-        <a className="text-white" href="https://github.com/melvincwng">
-          Melvin Ng
+        Created by:{" "}
+        <a
+          className="text-white"
+          href="https://github.com/melvincwng"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Melvin Ng,
         </a>
+        &nbsp;
+        <a
+          className="text-white"
+          href="https://github.com/P7461085"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Chye Yong,
+        </a>{" "}
+        <a
+          className="text-white"
+          href="https://github.com/vincentkua"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Zi Lin
+        </a>
+        <br />© 2023 IT8907-FCP Class 1 Team 1
       </div>
     </footer>
   );

@@ -91,8 +91,20 @@ export default function Footer() {
     style: {
       padding: "0px 16px 16px"
     }
-  }, "\xA9 2023", " ", /*#__PURE__*/React.createElement("a", {
+  }, "Created by:", " ", /*#__PURE__*/React.createElement("a", {
     className: "text-white",
-    href: "https://github.com/melvincwng"
-  }, "Melvin Ng")));
+    href: "https://github.com/melvincwng",
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, "Melvin Ng,"), "\xA0", /*#__PURE__*/React.createElement("a", {
+    className: "text-white",
+    href: "https://github.com/P7461085",
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, "Chye Yong,"), " ", /*#__PURE__*/React.createElement("a", {
+    className: "text-white",
+    href: "https://github.com/vincentkua",
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, "Zi Lin"), /*#__PURE__*/React.createElement("br", null), "\xA9 2023 IT8907-FCP Class 1 Team 1"));
 }
