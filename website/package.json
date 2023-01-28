@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.19.3",
+    "@babel/preset-react": "^7.18.6",
+    "@redux-devtools/core": "^3.13.1",
+    "@reduxjs/toolkit": "^1.9.1",
+    "babel-plugin-add-import-extension": "^1.6.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.7.1",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.7.0",
+    "react-spinners": "^0.13.7"
+  },
+  "scripts": {
+    "start": "npx babel --watch src --out-dir output --presets @babel/preset-react --plugins=babel-plugin-add-import-extension",
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
+  }
+}
