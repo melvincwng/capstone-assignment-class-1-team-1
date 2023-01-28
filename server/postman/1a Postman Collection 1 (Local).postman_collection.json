@@ -1,0 +1,484 @@
+{
+	"info": {
+		"_postman_id": "286acd56-e5ba-42b6-829b-ac3658f98448",
+		"name": "BDD Assignment 1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"admin@gmail.com\",\r\n    \"password\": \"password123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/logout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "JWT=Bearer%20eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwibmFtZSI6Ik1hcnkiLCJyb2xlIjoiYWRtaW4iLCJsb2dnZWRJbiI6dHJ1ZSwiaWF0IjoxNjcxMjgyMTMxLCJleHAiOjE2NzEzNjg1MzF9.JbEr0SbjSRo6Bv7GCYLWybcPSQ7s2AYRqXrKo7Ib2PQ; Path=/; HttpOnly; Secure; SameSite=None",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"admin@gmail.com\",\r\n    \"password\": \"password123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/logout",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/movies",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/movies",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/movies?active=Y",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/movies?active=Y",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"movies"
+					],
+					"query": [
+						{
+							"key": "active",
+							"value": "Y"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/movies?active=N",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/movies?active=N",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"movies"
+					],
+					"query": [
+						{
+							"key": "active",
+							"value": "N"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/movies/search?name=Adam&genreID=1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/movies/search?name=Adam&genreID=1",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"movies",
+						"search"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Adam"
+						},
+						{
+							"key": "genreID",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/movies/search?name=Your",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/movies/search?name=Your",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"movies",
+						"search"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Your"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/movies/search?genreID=2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/movies/search?genreID=2",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"movies",
+						"search"
+					],
+					"query": [
+						{
+							"key": "genreID",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/movies",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "JWT=Bearer%20eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwibmFtZSI6Ik1hcnkiLCJyb2xlIjoiYWRtaW4iLCJsb2dnZWRJbiI6dHJ1ZSwiaWF0IjoxNjcxMjgyMTMxLCJleHAiOjE2NzEzNjg1MzF9.JbEr0SbjSRo6Bv7GCYLWybcPSQ7s2AYRqXrKo7Ib2PQ; Path=/; HttpOnly; Secure; SameSite=None",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Doraemon\",\r\n    \"description\": \"Good movie to be seen!\",\r\n    \"releaseDate\": \"2022-11-11 23:59:59\",\r\n    \"imageURL\": \"https://m.media-amazon.com/images/M/MV5BYzZkOGUwMzMtMTgyNS00YjFlLTg5NzYtZTE3Y2E5YTA5NWIyXkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_.jpg\",\r\n    \"genreID\": \"1\",\r\n    \"active\": \"Y\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/movies",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/genres",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/genres",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"genres"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/genres",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "JWT=Bearer%20eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwibmFtZSI6Ik1hcnkiLCJyb2xlIjoiYWRtaW4iLCJsb2dnZWRJbiI6dHJ1ZSwiaWF0IjoxNjcxMjgyMTMxLCJleHAiOjE2NzEzNjg1MzF9.JbEr0SbjSRo6Bv7GCYLWybcPSQ7s2AYRqXrKo7Ib2PQ; Path=/; HttpOnly; Secure; SameSite=None",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"horror\",\r\n    \"description\": \"Horror movies are listed here\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/genres",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"genres"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "JWT=Bearer%20eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwibmFtZSI6Ik1hcnkiLCJyb2xlIjoiYWRtaW4iLCJsb2dnZWRJbiI6dHJ1ZSwiaWF0IjoxNjcxMjgyMTMxLCJleHAiOjE2NzEzNjg1MzF9.JbEr0SbjSRo6Bv7GCYLWybcPSQ7s2AYRqXrKo7Ib2PQ; Path=/; HttpOnly; Secure; SameSite=None",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users/:userID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "JWT=Bearer%20eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsImVtYWlsIjoiYWRtaW5AZ21haWwuY29tIiwibmFtZSI6Ik1hcnkiLCJyb2xlIjoiYWRtaW4iLCJsb2dnZWRJbiI6dHJ1ZSwiaWF0IjoxNjcxMjgyMTMxLCJleHAiOjE2NzEzNjg1MzF9.JbEr0SbjSRo6Bv7GCYLWybcPSQ7s2AYRqXrKo7Ib2PQ; Path=/; HttpOnly; Secure; SameSite=None",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/users/:userID",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"users",
+						":userID"
+					],
+					"variable": [
+						{
+							"key": "userID",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Tom\",\r\n    \"email\": \"tom@gmail.com\",\r\n    \"role\": \"user\",\r\n    \"password\": \"password123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/users",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users/:userID",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "JWT=Bearer%20eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjMsImVtYWlsIjoidG9tQGdtYWlsLmNvbSIsIm5hbWUiOiJUb20iLCJyb2xlIjoidXNlciIsImxvZ2dlZEluIjp0cnVlLCJpYXQiOjE2NzEyODM0MTcsImV4cCI6MTY3MTM2OTgxN30.t8b6RkVCnj1kDG74R5bvan5LCq4u4O3aU50p4lxanmE; Path=/; Secure; HttpOnly;",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"newUserOrAdmin@gmail.com\",\r\n    \"password\": \"NewPassword000\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/users/:userID",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"users",
+						":userID"
+					],
+					"variable": [
+						{
+							"key": "userID",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/users/:userID",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "JWT=Bearer%20eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjMsImVtYWlsIjoidG9tQGdtYWlsLmNvbSIsIm5hbWUiOiJUb20iLCJyb2xlIjoidXNlciIsImxvZ2dlZEluIjp0cnVlLCJpYXQiOjE2NzEyODM0MTcsImV4cCI6MTY3MTM2OTgxN30.t8b6RkVCnj1kDG74R5bvan5LCq4u4O3aU50p4lxanmE; Path=/; Secure; HttpOnly;",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/users/:userID",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"users",
+						":userID"
+					],
+					"variable": [
+						{
+							"key": "userID",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

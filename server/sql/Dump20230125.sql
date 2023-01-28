@@ -44,6 +44,31 @@ INSERT INTO `genre` VALUES (1,'action','Action movies are listed here'),(2,'anim
 UNLOCK TABLES;
 
 --
+-- Table structure for table `logs`
+--
+
+DROP TABLE IF EXISTS `logs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `logs` (
+  `logsID` int NOT NULL AUTO_INCREMENT,
+  `originalMovieDetails` longtext NOT NULL,
+  `updatedByWho` varchar(100) NOT NULL,
+  `timestamp` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`logsID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `logs`
+--
+
+LOCK TABLES `logs` WRITE;
+/*!40000 ALTER TABLE `logs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `logs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `movie`
 --
 
@@ -99,7 +124,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'admin@gmail.com','Mary','admin','$2a$10$SKg1hPFvl2bIVQladweKS.RQJmnHmiAmKfyre17/TsizIvt7WoVSK'),(2,'user@gmail.com','Jeff','user','$2a$10$3EAgypS6t8EMPzKKZe4uGu2fEFhoYbDQ7Z7xY7JFafNr/yg3twCfi');
+INSERT INTO `user` VALUES (1,'admin@gmail.com','Mary','admin','$2a$10$6h1F1DJKqciD27UYZPpxQ..EZeNhT5V3FOhM2t1ljxCmJOnrR.Rnu'),(2,'user@gmail.com','Jeff','user','$2a$10$3EAgypS6t8EMPzKKZe4uGu2fEFhoYbDQ7Z7xY7JFafNr/yg3twCfi');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -120,4 +145,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-17 21:33:41
+-- Dump completed on 2023-01-25 17:33:07
