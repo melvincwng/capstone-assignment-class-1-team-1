@@ -4,7 +4,7 @@
  *    - PREFFERED METHOD - as it's more secure than the 2nd method below (in summary)
  *    - There's still some risk of CSRF attacks, since we are using sameSite: "none" in the cookie's options (if we use sameSite: "strict" or "lax", the cookie cannot be sent from the client-side to server for cross-origin requests which is our use case as we will be hosting our FE & BE on separate domains on the cloud...)
  *    - To prevent/mitigate against CSRF attacks, we will be checking the request header's "origin" field & see if the request comes from a trusted cross-origin domain (e.g. our own domain) or the same origin as the server. If not, we reject the request.
- *    - See the application level middleware "verifyAgainstCSRFAttacks" above for more details.
+ *    - See the application level middleware "verifyAgainstCSRFAttacks" below for more details.
  * 2) From the request header's "authorization" field
  *    - From localStorage/sessionStorage in the client, we extract out the JWT token that is stored there.
  *    - And then pass it in the request header's "authorization" field, from which we then make a request to the server
