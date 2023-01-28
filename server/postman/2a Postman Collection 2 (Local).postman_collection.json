@@ -1,0 +1,247 @@
+{
+	"info": {
+		"_postman_id": "822f1da0-7c78-4108-b56c-c1aeafc73d74",
+		"name": "BDD Assignment 2 (Local)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"admin@gmail.com\",\r\n    \"password\": \"password123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/logout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"admin@gmail.com\",\r\n    \"password\": \"password123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/logout",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/movies",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Doraemon\",\r\n    \"description\": \"Good movie to be seen!\",\r\n    \"releaseDate\": \"2022-11-11 23:59:59\",\r\n    \"imageURL\": \"https://m.media-amazon.com/images/M/MV5BYzZkOGUwMzMtMTgyNS00YjFlLTg5NzYtZTE3Y2E5YTA5NWIyXkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_.jpg\",\r\n    \"genreID\": \"1\",\r\n    \"active\": \"Y\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/movies",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/genres",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"horror\",\r\n    \"description\": \"Horror movies are listed here\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/genres",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"genres"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/uploads",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/uploads",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"uploads"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/uploads",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "movieImage",
+							"type": "file",
+							"src": "/C:/Users/Melvin/Pictures/1a.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8081/uploads",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"uploads"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/images/:fileName",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/images/:fileName",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"images",
+						":fileName"
+					],
+					"variable": [
+						{
+							"key": "fileName",
+							"value": "1a.png"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/movies/:movieID",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"UPDATED - Doraemon\",\r\n    \"description\": \"UPDATED - Good movie to be seen!\",\r\n    \"releaseDate\": \"2023-01-01 23:59:59\",\r\n    \"imageURL\": \"https://m.media-amazon.com/images/M/MV5BYzZkOGUwMzMtMTgyNS00YjFlLTg5NzYtZTE3Y2E5YTA5NWIyXkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_.jpg\",\r\n    \"genreID\": \"1\",\r\n    \"active\": \"Y\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8081/movies/:movieID",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"movies",
+						":movieID"
+					],
+					"variable": [
+						{
+							"key": "movieID",
+							"value": "11"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/genres/:genreID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8081/genres/:genreID",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"genres",
+						":genreID"
+					],
+					"variable": [
+						{
+							"key": "genreID",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
