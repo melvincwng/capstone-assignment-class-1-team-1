@@ -1,0 +1,381 @@
+#root {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(20, 20, 20);
+  color: white;
+  min-height: 100vh;
+}
+
+#navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: rgb(20, 20, 20) !important;
+  color: white;
+  margin-left: 24px;
+  margin-right: 24px;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+#companyLogo {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.nav-link {
+  cursor: pointer;
+}
+
+#searchIcon,
+#notificationsIcon {
+  width: 28px;
+  height: 28px;
+  margin-right: 36px;
+  cursor: pointer;
+}
+
+#profileIcon {
+  width: 28px;
+  height: 28px;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+#caretDownIcon,
+#caretUpIcon {
+  width: 14px;
+  height: 14px;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+#searchInputBar {
+  border: 1px solid #ffffff8c;
+  border-radius: 4px;
+  margin-right: 16px;
+  padding: 0px 2px;
+  border: 0px;
+}
+
+#notificationsDropdown,
+#profileDropdown {
+  position: absolute;
+  border: 1px solid #ffffff8c;
+  color: #ffffff8c;
+  background-color: rgb(20, 20, 20);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+#searchInputBar:focus {
+  outline: none !important;
+}
+
+#notificationsDropdown:hover,
+#profileDropdown:hover {
+  background-color: rgb(20, 20, 20);
+  border: 1px solid white;
+  color: white;
+}
+
+.btn-outline-secondary {
+  width: 100% !important;
+  color: rgba(255, 255, 255, 0.55) !important;
+}
+
+.btn-outline-secondary:hover {
+  color: white !important;
+}
+
+.genreOptions {
+  width: 100%;
+}
+
+#mainDiv {
+  display: flex;
+  flex-direction: column;
+  margin: 18px 36px;
+}
+
+#moviesHeader {
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#movieUnorderedList {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-left: 0px !important;
+  min-height: 333px !important;
+}
+
+#movieUnorderedListTwo {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-left: 0px !important;
+  flex-direction: column;
+}
+
+.movieListItem {
+  display: flex;
+  flex-direction: column;
+  width: 225px;
+  word-wrap: break-word !important;
+  text-align: center;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.movieLink,
+.additionalNotesLink {
+  color: white;
+  text-decoration: none;
+}
+
+.moviePosterImage {
+  width: 200px;
+  height: 300px;
+  min-width: 200px;
+  min-height: 300px;
+}
+
+.imageOverlay {
+  opacity: 0;
+  display: none;
+  position: absolute;
+  top: 5%;
+  left: 2.5%;
+  color: white;
+  word-break: break-word;
+}
+
+.movieListItem:hover .imageOverlay {
+  animation: animateWords 0.25s;
+  opacity: 1;
+  display: block;
+  min-width: 200px;
+  min-height: 300px;
+}
+
+@keyframes animateWords {
+  from {
+    top: 0;
+  }
+  to {
+    top: 16px;
+  }
+}
+
+.movieListItem img {
+  opacity: 1;
+  transition: 0.25s ease;
+}
+
+.movieListItem:hover img {
+  opacity: 0.25;
+}
+
+.reduceFontSize {
+  font-size: 12px;
+}
+
+#emptyComponent {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  min-height: 333px !important;
+}
+
+#emptyComponentTwo {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  min-height: 358px !important;
+}
+
+#createMovieText,
+#deleteMovieText,
+.form-div {
+  margin-bottom: 6px;
+}
+
+#aboutUsText {
+  margin-bottom: 12px;
+}
+
+#deleteMultipleMoviesText {
+  margin-top: 8px;
+}
+
+.form-div-button {
+  margin-top: 12px;
+}
+
+#additionalNotes {
+  margin-top: 6px;
+  font-size: 12px;
+}
+
+/* 
+  Main ProfileCard CSS:
+    - Recall concepts on X,Y,Z axis, transform: translateX() translateY() translateZ(), aka positioning an element in 3D space using CSS (see reference 1)
+    - 'perspective' property gives an element a 3D-like kind of effect/appearance:
+        * The smaller the value, the closer the user is to the Z-plane/Z-axis, hence user will experience a "greater" 3D effect
+        * The greater the value, the further the user is to the Z-plane/Z-axis, hence user will experience a more "subtle" 3D effect
+        * Try adjusting the values below & you'll know what I mean
+    - 'transform-style' allows it's child elements to preserve its 3D position when transformed
+        * Without this property, the child elements will lose their 3D position when transformed
+  References:
+    - https://3dtransforms.desandro.com/perspective  
+    - https://css-tricks.com/almanac/properties/p/perspective/
+    - https://www.w3schools.com/cssref/css3_pr_transform-style.php
+*/
+
+.card-flip-parent-container {
+  height: 225px;
+  perspective: 1700px;
+  margin-bottom: 24px;
+}
+
+.card-flip-child-container {
+  width: 100%;
+  height: 100%;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+}
+
+.card-flip-parent-container:hover .card-flip-child-container {
+  transform: rotateY(-180deg);
+}
+
+/* 
+  Position: absolute "stacks" the front and back cards on top of one another
+  Backface-visibility: hidden hides the backface of the card
+  At the start, our "back-card" is already rotated 180 degrees on the Y-axis (try to imagine the card's backface is now facing us), hence it's hidden from the user due to the backface-visibility property
+  At the start, our "front-card" is not rotated on the Y-axis, hence it's visible to the user. But when we rotate the front-card later, then the backface of the card that's generated later will be facing us and hence be hidden.
+  Reference:
+    - https://www.w3schools.com/cssref/css3_pr_backface-visibility.php
+*/
+.card-flip-front-card,
+.card-flip-back-card {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+.card-flip-front-card {
+  color: black;
+}
+
+.card-flip-back-card {
+  color: black;
+  transform: rotateY(180deg);
+}
+
+.img-fluid {
+  width: 225px !important;
+  height: 225px !important;
+}
+
+.back-card-ul {
+  font-size: 14px;
+}
+
+/* Individual Card CSS */
+.card-flipper {
+  max-width: 540px;
+  color: black;
+}
+
+.rotate-card-text {
+  text-align: right;
+}
+
+.github-link {
+  text-decoration: none;
+}
+
+.github-link:hover {
+  text-decoration: underline;
+}
+
+/* Add media query for mobile-responsiveness (991px & below is for tablets & below) */
+@media only screen and (max-width: 991px) {
+  #notificationsDropdown,
+  #profileDropdown {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .card-flip-parent-container {
+    margin-bottom: 300px !important;
+  }
+
+  .card-div-front-card {
+    text-align: center;
+  }
+
+  .card-div-back-card {
+    height: 350px !important;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  #notificationsDropdown,
+  #profileDropdown {
+    width: 94.22%;
+    text-align: center;
+  }
+
+  #moviesHeader {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  #retrieveMovieText,
+  #toggleMoviesBtn {
+    margin-bottom: 24px;
+  }
+
+  #filterMoviesByGenreBtn {
+    margin-bottom: 12px;
+  }
+
+  #emptyComponent {
+    top: 400px !important;
+  }
+
+  #emptyComponent {
+    padding: 0px 8px;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  #notificationsDropdown,
+  #profileDropdown {
+    width: 92.31%;
+  }
+
+  .card-text,
+  .back-card-ul {
+    font-size: 12px;
+  }
+}

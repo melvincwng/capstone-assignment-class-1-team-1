@@ -1,0 +1,4 @@
+FCP (Weekend)
+1. Check out the two TO-REMOVE-1 & TO-REMOVE-2 regarding [movieIDsCounter, setMovieIDsCounter]
+2. Start integrating
+3. Write technical documentation report & README.md
