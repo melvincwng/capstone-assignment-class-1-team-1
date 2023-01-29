@@ -10,7 +10,6 @@ import {
   HIDE_PAST_MOVIES,
   SHOW_PAST_MOVIES,
   SHOW_ALL_MOVIES,
-  INITIAL_MOVIES as HARDCODED_MOVIES_ARRAY,
 } from "../utils/constants";
 
 const fetchInitialMoviesFromDB = async () => {
@@ -22,9 +21,9 @@ const fetchInitialMoviesFromDB = async () => {
   } catch (error) {
     console.log(error);
     alert(
-      "An error occurred while fetching the movies from the database 😔\nWe will be using a hardcoded array of movies instead."
+      "An error occurred while fetching the movies from the database!\nPlease try again later 😔"
     );
-    return HARDCODED_MOVIES_ARRAY;
+    return [];
   }
 };
 
