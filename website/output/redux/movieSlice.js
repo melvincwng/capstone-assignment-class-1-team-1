@@ -1,7 +1,7 @@
 // movieSlice.js (Contains an array of movies as the state of the store)
 
 import { createSlice } from "@reduxjs/toolkit";
-import { API_HOST, YES, NO, SORT_BY_A_TO_Z, SORT_BY_Z_TO_A, HIDE_PAST_MOVIES, SHOW_PAST_MOVIES, SHOW_ALL_MOVIES, INITIAL_MOVIES as HARDCODED_MOVIES_ARRAY } from "../utils/constants.js";
+import { API_HOST, YES, NO, SORT_BY_A_TO_Z, SORT_BY_Z_TO_A, HIDE_PAST_MOVIES, SHOW_PAST_MOVIES, SHOW_ALL_MOVIES } from "../utils/constants.js";
 const fetchInitialMoviesFromDB = async () => {
   try {
     const response = await fetch(`${API_HOST}/movies`);
@@ -10,8 +10,8 @@ const fetchInitialMoviesFromDB = async () => {
     return data;
   } catch (error) {
     console.log(error);
-    alert("An error occurred while fetching the movies from the database 😔\nWe will be using a hardcoded array of movies instead.");
-    return HARDCODED_MOVIES_ARRAY;
+    alert("An error occurred while fetching the movies from the database!\nPlease try again later 😔");
+    return [];
   }
 };
 let initialMoviesArray = await fetchInitialMoviesFromDB();

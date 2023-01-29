@@ -14,13 +14,16 @@ export default function UpdateMoviesPage() {
       <b id="updateMoviesText">Update Movies:</b>
       <br />
       Which One 🤔?
-      {arrayOfMovieIDs.map(function (movieID) {
-        return (
-          <div key={movieID}>
-            <Link to={`/update-movies/${movieID}`}>Movie {movieID}</Link>
-          </div>
-        );
-      })}
+      <br />
+      {arrayOfMovieIDs.length
+        ? arrayOfMovieIDs.map(function (movieID) {
+            return (
+              <div key={movieID}>
+                <Link to={`/update-movies/${movieID}`}>Movie {movieID}</Link>
+              </div>
+            );
+          })
+        : "No movies available to update 😔"}
     </div>
   );
 }

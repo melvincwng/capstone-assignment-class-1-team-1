@@ -13,11 +13,11 @@ export default function UpdateMoviesPage() {
     }
   }, /*#__PURE__*/React.createElement("b", {
     id: "updateMoviesText"
-  }, "Update Movies:"), /*#__PURE__*/React.createElement("br", null), "Which One \uD83E\uDD14?", arrayOfMovieIDs.map(function (movieID) {
+  }, "Update Movies:"), /*#__PURE__*/React.createElement("br", null), "Which One \uD83E\uDD14?", /*#__PURE__*/React.createElement("br", null), arrayOfMovieIDs.length ? arrayOfMovieIDs.map(function (movieID) {
     return /*#__PURE__*/React.createElement("div", {
       key: movieID
     }, /*#__PURE__*/React.createElement(Link, {
       to: `/update-movies/${movieID}`
     }, "Movie ", movieID));
-  }));
+  }) : "No movies available to update 😔");
 }
