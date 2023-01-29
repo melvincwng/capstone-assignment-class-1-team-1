@@ -87,7 +87,7 @@ export default function UpdateIndividualMoviePage() {
   // selectedMovieToUpdate.releaseDate obtained from DB is in ISOString format (i.e. 2022-12-25T10:00:00.000Z)
   // We have to convert it to a format that can be used in the UpdateIndividualMoviePage form (i.e. 2022-12-25 10:00:00)
   const formattedReleaseDate = formatDate(
-    new Date(selectedMovieToUpdate.releaseDate)
+    new Date(selectedMovieToUpdate?.releaseDate)
   );
 
   return movieExists ? (
