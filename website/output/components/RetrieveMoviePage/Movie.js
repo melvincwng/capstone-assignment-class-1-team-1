@@ -1,5 +1,5 @@
 import { YES, NO } from "../../utils/constants.js";
-import { convertGenreIDToGenreType } from "../../utils/functions.js";
+import { convertGenreIDToGenreType, formatDate } from "../../utils/functions.js";
 import { useSelector, useDispatch } from "react-redux";
 import { pinMovie, unpinMovie } from "../../redux/pinnedMovieSlice.js";
 import { Link } from "react-router-dom";
@@ -54,6 +54,9 @@ export default function Movie({
   function setNavBarActiveTabToUpdateMovie() {
     setActiveTab(NAVBAR_OPTIONS.UPDATE_MOVIES);
   }
+
+  // Formatting the release date from ISO string (e.g. 2022-09-01T00:00:00.000Z) to a more readable format (e.g. 2022-09-01 00:00:00)
+  const formattedReleaseDate = formatDate(new Date(releaseDate));
   return /*#__PURE__*/React.createElement("li", {
     className: "movieListItem",
     id: movieID
@@ -73,7 +76,7 @@ export default function Movie({
     className: "reduceFontSize"
   }, description), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", {
     className: "reduceFontSize"
-  }, releaseDate), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", {
+  }, formattedReleaseDate), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", {
     className: "reduceFontSize"
   }, genreType)), /*#__PURE__*/React.createElement("br", null), name), " ", /*#__PURE__*/React.createElement("span", null, /*#__PURE__*/React.createElement("span", null, isMovieActive), " ", /*#__PURE__*/React.createElement("span", {
     onClick: changeMoviePinnedStatus,

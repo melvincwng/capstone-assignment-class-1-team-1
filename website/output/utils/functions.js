@@ -1,7 +1,6 @@
-/**
- * A utility function that converts a genre ID to a genre type.
- */
-
+import { API_HOST } from "./constants.js"; /**
+                                            * A utility function that converts a genre ID to a genre type.
+                                            */
 export const convertGenreIDToGenreType = genreID => {
   const genreType = genreID === 1 ? "Action" : genreID === 2 ? "Anime" : genreID === 3 ? "Fantasy" : genreID === 4 ? "Sci-fi" : "Unknown";
   return genreType;
@@ -73,7 +72,7 @@ export function validateAndAddOrUpdateMovieDetails(event, movieIDsCounter, setMo
   const passAllValidationChecks = !haveEmptyFields && movieReleaseDateValid && movieImageURLValid;
   if (passAllValidationChecks) {
     event.preventDefault();
-    alert("Passed all validation checks ✔️! \nPlease wait while we add or update this movie to the in-memory array / sessionStorage 😀!");
+    alert("Passed all validation checks ✔️! \nPlease wait while we add or update this movie to the sessionStorage & database 😀!");
 
     /**
      * Sanitize all user input using DOMPurify to prevent XSS attacks:
@@ -101,7 +100,7 @@ export function validateAndAddOrUpdateMovieDetails(event, movieIDsCounter, setMo
     addMovies && addMovies(payload);
 
     // Alert user that movie details have been successfully added or updated (depends on where it's being called from)
-    alert("Movie successfully added or updated to the in-memory array / sessionStorage 😃!");
+    alert("Movie successfully added or updated to the sessionStorage & database 😃!");
 
     // Activate the setState hook for 'createMovieSuccess' state and set it to true
     setCreateMovieSuccess && setCreateMovieSuccess(true);
@@ -124,6 +123,31 @@ export function clearSessionStorage() {
   sessionStorage.removeItem("role");
   window.location.hash = "";
   window.location.reload();
+}
+
+/**
+ * A utility function that logout the user when a) the page is refreshed or b) the user clicks on the 'Logout' button
+ */
+
+export async function logout(event) {
+  const isLoggedIn = sessionStorage.getItem("loggedIn");
+  if (isLoggedIn) {
+    // When the user refreshes the page, it will create a pop-up alert box that asks the user if they want to 'Reload Site?' & shows 2 options - 'Reload' or 'Cancel'.
+    // Regardless of which option the user chooses, the page will still be refreshed
+    event.returnValue = "";
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: null,
+      credentials: "include"
+    };
+    const logoutResponse = await fetch(`${API_HOST}/logout`, requestOptions);
+    const logoutResponseData = await logoutResponse.json();
+    alert(logoutResponseData.message);
+  }
+  clearSessionStorage();
 }
 
 /**

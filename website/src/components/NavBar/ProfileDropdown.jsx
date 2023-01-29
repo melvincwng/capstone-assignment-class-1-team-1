@@ -1,9 +1,8 @@
-import { clearSessionStorage } from "../../utils/functions";
+import { logout } from "../../utils/functions";
 
 export default function ProfileDropdown() {
-  function handleLogout() {
-    alert("You have logged out!");
-    clearSessionStorage();
+  function handleLogout(event) {
+    logout(event);
   }
 
   return (

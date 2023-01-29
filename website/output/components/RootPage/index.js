@@ -1,11 +1,11 @@
 /**
  * Additional Notes:
  * - State of app is managed by Redux store
- * - The Redux store state is initially set by the initialMoviesArray constant
- * - Then over here in RootPage.jsx, we extract out the state of the store & save it to a variable called movies
- * - Which we then save it to sessionStorage & also pass it down as context to the components
+ * - The Redux store state is initially set by the 'initialMoviesArray' variable which is obtained from hitting the GET /movies API endpoint (see movieSlice.js)
+ * - Then over here in RootPage.jsx, we extract out the state of the store & save it to a variable called 'movies' (line 72)
+ * - Which we then save it to 'sessionStorage' & also pass it down as context to the components via 'MoviesContext.Provider'
  * - We also use various dispatch/reducer functions to update the state of the store
- * - Summary: initialMoviesArray constant --> state of Redux store --> movies variable --> sessionStorage & context --> From there, we utilize various dispatcher/reducer fns to update state of store accordingly
+ * - Summary: initialMoviesArray variable (obtained from GET /movies API call) --> state of Redux store --> movies variable --> sessionStorage & MoviesContext --> From there, we utilize various dispatcher/reducer fns to update state of store accordingly
  */import LoginPage from "../LoginPage/index.js";
 import Loader from "../Loader/index.js";
 import NavBar from "../NavBar/index.js";
@@ -14,8 +14,8 @@ import Footer from "../Footer/index.js";
 import UnauthorizedInvalidPage from "../UnauthorizedInvalidPage/index.js";
 import { ErrorBoundary } from "../ErrorBoundary/index.js";
 import { NAVBAR_OPTIONS } from "../../utils/constants.js";
-import { clearSessionStorage } from "../../utils/functions.js";
-import { FILTER_MOVIES_BY_GENRE, ADD_NEW_MOVIE, DELETE_ONE_MOVIE, DELETE_MULTIPLE_MOVIES, UPDATE_MOVIES, UPDATE_PINNED_MOVIES, INITIAL_MOVIES as initialMoviesArray } from "../../utils/constants.js";
+import { logout } from "../../utils/functions.js";
+import { FILTER_MOVIES_BY_GENRE, ADD_NEW_MOVIE, DELETE_ONE_MOVIE, DELETE_MULTIPLE_MOVIES, UPDATE_MOVIES, UPDATE_PINNED_MOVIES } from "../../utils/constants.js";
 import { MoviesContext } from "../../context/moviesContext.js"; // import moviesReducer from "./reducer/moviesReducer";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleMoviesArray, filterMoviesArray, addNewMovieDetails, deleteOneMovieDetails, deleteMultipleMoviesDetails, updateMovieDetails } from "../../redux/movieSlice.js";
@@ -34,7 +34,6 @@ export default function RootPage() {
   const [deleteOneMovieSuccess, setDeleteOneMovieSuccess] = React.useState(false);
   const [deleteMultipleMoviesSuccess, setDeleteMultipleMoviesSuccess] = React.useState(false);
   const [updateMovieSuccess, setUpdateMovieSuccess] = React.useState(false);
-  const [movieIDsCounter, setMovieIDsCounter] = React.useState(initialMoviesArray.length + 1);
   const loggedIn = sessionStorage.getItem("loggedIn");
   const isAdmin = sessionStorage.getItem("role") === "admin";
   const userAtRetrieveMoviePage = window.location.hash === "#/" || window.location.hash === "";
@@ -48,6 +47,7 @@ export default function RootPage() {
     return store.movie.value;
   });
   const dispatch = useDispatch();
+  const [movieIDsCounter, setMovieIDsCounter] = React.useState(movies.length + 1);
   const toggleMoviesFromInitialMoviesArray = function (option) {
     dispatch(toggleMoviesArray({
       name: option,
@@ -117,15 +117,18 @@ export default function RootPage() {
   const updatePinnedMovie = updatePinnedMovieInSessionStorageIfSelectedAndPinned;
 
   /**
-   * Explanation of the two useEffects blocks
-   *  - A) When the page is refreshed, we want to clear the sessionStorage first (clear previously edited or manipulated data when adding/removing movies) --> first useEffect
-   *  - B) After clearing the stored movies key/array in sessionStorage, we want to set the movies array to the context of the initialMoviesArray (a fresh start) --> second useEffect
-   *  - C) In short, for A & B, we are essentially "reset" the movies array in sessionStorage when reloading the page (A - clear previous data & B - Reinitialize/Reset the data)
+   * Explanation of the first useEffect block
+   *  - A) On refresh of the page, we call the logout function
+   * -  B) Thus allowing us to a) clear the JWT token stored in cookies if present & b) clear the sessionStorage (clear previously edited or manipulated data when adding/removing movies)
+   *
+   * Explanation of the second useEffect block
+   *  - C) After clearing the stored movies key/array in sessionStorage (see point B), we want to set the movies array to the context of the 'movies' variable (i.e. extracted out from the store aka line 72)
+   *  - D) In short, we are essentially "resetting" the movies array in sessionStorage when reloading the page (clear previous data & reinitialize/reset the data)
    */
   React.useEffect(() => {
-    window.addEventListener("beforeunload", clearSessionStorage);
+    window.addEventListener("beforeunload", logout);
     return () => {
-      window.removeEventListener("beforeunload", clearSessionStorage);
+      window.removeEventListener("beforeunload", logout);
     };
   }, []);
   React.useEffect(() => {

@@ -1,8 +1,7 @@
-import { clearSessionStorage } from "../../utils/functions.js";
+import { logout } from "../../utils/functions.js";
 export default function ProfileDropdown() {
-  function handleLogout() {
-    alert("You have logged out!");
-    clearSessionStorage();
+  function handleLogout(event) {
+    logout(event);
   }
   return /*#__PURE__*/React.createElement("div", {
     id: "profileDropdown",

@@ -2,8 +2,12 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useOutletContext } from "react-router-dom";
-import { validateAndAddOrUpdateMovieDetails } from "../../utils/functions";
+import {
+  formatDate,
+  validateAndAddOrUpdateMovieDetails,
+} from "../../utils/functions";
 import MovieDoesNotExist from "./MovieDoesNotExist";
+import { API_HOST } from "./../../utils/constants";
 
 export default function UpdateIndividualMoviePage() {
   const [setUpdateMovieSuccess, updateSelectedMovie, updatePinnedMovie] =
@@ -24,16 +28,63 @@ export default function UpdateIndividualMoviePage() {
     selectedMovieToUpdate
   );
 
-  function handleSubmit(event) {
+  // selectedMovieToUpdate.releaseDate obtained from DB is in ISOString format (i.e. 2022-12-25T10:00:00.000Z)
+  // We have to convert it to a format that can be used in the UpdateIndividualMoviePage form (i.e. 2022-12-25 10:00:00)
+  const formattedReleaseDate = formatDate(
+    new Date(selectedMovieToUpdate?.releaseDate)
+  );
+
+  async function updateMovieDetailsInTheDB() {
+    try {
+      // Need to format the releaseDate and genreID before sending the request to the API endpoint
+      const formattedMovieDetailsPayload = {
+        ...selectedMovie,
+        releaseDate: formattedReleaseDate,
+        genreID: selectedMovie.genreID.toString(),
+      };
+
+      const requestOptions = {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formattedMovieDetailsPayload),
+        credentials: "include",
+      };
+
+      const response = await fetch(
+        `${API_HOST}/movies/${selectedMovie.movieID}`,
+        requestOptions
+      );
+
+      const responseData = await response.json();
+
+      return responseData;
+    } catch (error) {
+      alert("Failed to update movie!\nPlease try again later 😞");
+      console.log(error);
+      return null;
+    }
+  }
+
+  async function handleSubmit(event) {
     event.preventDefault(); // Prevents form from refreshing the page
     const validatedDetails = validateAndAddOrUpdateMovieDetails(event);
+
     if (validatedDetails) {
-      // This block of code updates the selected movie details in sessionStorage
+      // Approach for FCP: Need to hit the PUT /movies/:movieID API endpoint to update the movie details in the DB
+      const movieUpdatedInDB = await updateMovieDetailsInTheDB();
+
+      // Approach for WDF: This updates the selected movie details in sessionStorage (so that when user navigates back to the RetrieveMoviePage after clicking another page, the updated movie details are also displayed there accordingly - seamless flow)
+      // On initial load/login --> user hits the GET /movies API endpoint to retrieve the movies from the DB --> This is only done ONCE (i.e. when the user logs in)
+      // But subsequently, when the user navigates to other pages to do other things (e.g. go to Update Movies page to update movies) & then navigates back to the RetrieveMoviePage, the movies shown there are actually retrieved from sessionStorage (can refer to Line 23 of NavBar.jsx which is linked to movieSlice.js's toggleMoviesArray - line 123)
+      // Hence, we need to update the movies array in sessionStorage with the updated movie details as well (besides just updating the movies array in the DB) so that the updated movie details are also displayed on the RetrieveMoviePage
+      // Refer to RootPage.jsx for more details (see the comments on the very top - Lines 1-9 on the flow of the movies array)
       updateSelectedMovie(selectedMovie);
-      setUpdateMovieSuccess(true);
+
+      // Set the state 'updateMovieSuccess' to true so that the RootPage (containing RetrieveMoviePage) can be re-rendered with the updated movie details
+      movieUpdatedInDB && setUpdateMovieSuccess(true);
 
       // This block of code updates the pinned movie details in sessionStorage (if it exists)
-      updatePinnedMovie(selectedMovie);
+      movieUpdatedInDB && updatePinnedMovie(selectedMovie);
     }
   }
 
@@ -116,7 +167,7 @@ export default function UpdateIndividualMoviePage() {
             className="form-control"
             id="form-movie-release-date"
             placeholder="2022-12-25 10:00:00"
-            defaultValue={selectedMovieToUpdate.releaseDate}
+            defaultValue={formattedReleaseDate}
             onChange={handleMovieReleaseDateChange}
           />
         </div>
