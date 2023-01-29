@@ -63,7 +63,7 @@ var validationLib = {
       `^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1]) (2[0-3]|[01][0-9]):[0-5][0-9]:[0-5][0-9]$`
     );
 
-    // Validation checks when adding a new movie
+    // Validation checks when a) adding a new movie or b) updating an existing movie
     if (
       name.length <= 255 &&
       description &&
@@ -76,7 +76,7 @@ var validationLib = {
     } else {
       res.status(500).send({
         message:
-          "Validation failed in the Add New Movie process! Please check your input again.",
+          "Validation failed in the Add New Movie OR Update Movie process! Please check your input again.",
       });
     }
   },

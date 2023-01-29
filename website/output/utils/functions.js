@@ -1,8 +1,18 @@
-import { API_HOST } from "./constants.js"; /**
-                                            * A utility function that converts a genre ID to a genre type.
-                                            */
-export const convertGenreIDToGenreType = genreID => {
-  const genreType = genreID === 1 ? "Action" : genreID === 2 ? "Anime" : genreID === 3 ? "Fantasy" : genreID === 4 ? "Sci-fi" : "Unknown";
+import { API_HOST } from "./constants.js";
+/**
+ * A utility function that converts a genre ID to a genre type.
+ */
+export const convertGenreIDToGenreType = (genreID) => {
+  const genreType =
+    genreID === 1
+      ? "Action"
+      : genreID === 2
+      ? "Anime"
+      : genreID === 3
+      ? "Fantasy"
+      : genreID === 4
+      ? "Sci-fi"
+      : "Unknown";
   return genreType;
 };
 
@@ -25,7 +35,19 @@ export function throwError() {
  */
 
 export function formatDate(date) {
-  return [date.getFullYear(), (date.getMonth() + 1).toString().padStart(2, "0"), date.getDate().toString().padStart(2, "0")].join("-") + " " + [date.getHours().toString().padStart(2, "0"), date.getMinutes().toString().padStart(2, "0"), date.getSeconds().toString().padStart(2, "0")].join(":");
+  return (
+    [
+      date.getFullYear(),
+      (date.getMonth() + 1).toString().padStart(2, "0"),
+      date.getDate().toString().padStart(2, "0"),
+    ].join("-") +
+    " " +
+    [
+      date.getHours().toString().padStart(2, "0"),
+      date.getMinutes().toString().padStart(2, "0"),
+      date.getSeconds().toString().padStart(2, "0"),
+    ].join(":")
+  );
 }
 
 /**
@@ -43,36 +65,77 @@ export function formatDate(date) {
  *  - b) Validates & Updates a movie if the user is in the 'Update Movie' page
  */
 
-export function validateAndAddOrUpdateMovieDetails(event, movieIDsCounter, setMovieIDsCounter, addMovies, setCreateMovieSuccess) {
+export function validateAndAddOrUpdateMovieDetails(
+  event,
+  movieIDsCounter,
+  setMovieIDsCounter,
+  addMovies,
+  setCreateMovieSuccess
+) {
   console.log("Validating movie details...");
   const movieName = document.getElementById("form-movie-name").value.trim();
-  const movieDescription = document.getElementById("form-movie-description").value.trim();
-  const movieReleaseDate = document.getElementById("form-movie-release-date").value.trim();
-  const movieImageURL = document.getElementById("form-movie-image-url").value.trim();
-  const movieGenreID = document.getElementById("form-movie-genre-id").value.trim();
+  const movieDescription = document
+    .getElementById("form-movie-description")
+    .value.trim();
+  const movieReleaseDate = document
+    .getElementById("form-movie-release-date")
+    .value.trim();
+  const movieImageURL = document
+    .getElementById("form-movie-image-url")
+    .value.trim();
+  const movieGenreID = document
+    .getElementById("form-movie-genre-id")
+    .value.trim();
   const movieActive = document.getElementById("form-movie-active").value.trim();
-  console.log("Movie Details:", movieName, movieDescription, movieReleaseDate, movieImageURL, movieGenreID, movieActive);
+  console.log(
+    "Movie Details:",
+    movieName,
+    movieDescription,
+    movieReleaseDate,
+    movieImageURL,
+    movieGenreID,
+    movieActive
+  );
 
   // Validation check 1 - Check if any of the fields are empty
-  const haveEmptyFields = !movieName || !movieDescription || !movieReleaseDate || !movieImageURL || !movieGenreID || !movieActive;
+  const haveEmptyFields =
+    !movieName ||
+    !movieDescription ||
+    !movieReleaseDate ||
+    !movieImageURL ||
+    !movieGenreID ||
+    !movieActive;
 
   // Validation check 2 - check if movieReleaseDate is of the correct format (YYYY-MM-DD HH:MM:SS)
   // Use regex to check if movieReleaseDate is of the appropriate format (YYYY-MM-DD HH:MM:SS) --> need this format to store in in-memory array/sessionStorage
   // FYI, in the section of the regexp where a whitespace is present (aka \s) --> My VSCode settings will make \s become s --> Hence, we need to add an additional \ so become \\s (escape character for first \)
   // Reference: https://regexlib.com/REDetails.aspx?regexp_id=1824
-  const validReleaseDateRegex = new RegExp("^([0-9]{4})-([0-1][0-9])-([0-3][0-9])\\s([0-1][0-9]|[2][0-3]):([0-5][0-9]):([0-5][0-9])$");
+  const validReleaseDateRegex = new RegExp(
+    "^([0-9]{4})-([0-1][0-9])-([0-3][0-9])\\s([0-1][0-9]|[2][0-3]):([0-5][0-9]):([0-5][0-9])$"
+  );
   const movieReleaseDateValid = validReleaseDateRegex.test(movieReleaseDate);
-  console.log("Is the Movie Release Date in a valid format --->", movieReleaseDateValid);
+  console.log(
+    "Is the Movie Release Date in a valid format --->",
+    movieReleaseDateValid
+  );
 
   // Validation check 3 - A validation check to check if movieImageURL is a valid link/URL (using regex)
   // This regex checks if the image URL optionally starts with http/https: and '://', subdomain can be anything, domain name of 2-256 chars, and top level domain e.g. .com/.org etc of 2-6 chars
-  const validURLRegex = new RegExp("((http|https)://)?" + "[a-zA-Z0-9@:%._\\+~#?&//=]{2,256}\\.[a-z]" + "{2,6}\\b([-a-zA-Z0-9@:%._\\+~#?&//=]*)", "i");
+  const validURLRegex = new RegExp(
+    "((http|https)://)?" +
+      "[a-zA-Z0-9@:%._\\+~#?&//=]{2,256}\\.[a-z]" +
+      "{2,6}\\b([-a-zA-Z0-9@:%._\\+~#?&//=]*)",
+    "i"
+  );
   const movieImageURLValid = validURLRegex.test(movieImageURL);
   console.log("Is Movie Image URL Valid --->", movieImageURLValid);
-  const passAllValidationChecks = !haveEmptyFields && movieReleaseDateValid && movieImageURLValid;
+  const passAllValidationChecks =
+    !haveEmptyFields && movieReleaseDateValid && movieImageURLValid;
   if (passAllValidationChecks) {
     event.preventDefault();
-    alert("Passed all validation checks ✔️! \nPlease wait while we add or update this movie to the in-memory array / sessionStorage 😀!");
+    alert(
+      "Passed all validation checks ✔️! \nPlease wait while we add or update this movie to the database 😀!"
+    );
 
     /**
      * Sanitize all user input using DOMPurify to prevent XSS attacks:
@@ -80,33 +143,37 @@ export function validateAndAddOrUpdateMovieDetails(event, movieIDsCounter, setMo
      *  - Without DOMPurify, the above code will be executed and an alert box will pop up mimicking an XSS attack, when the payload is sent to & stored in the in-memory array / sessionStorage, and the movie details page is rendered with the XSS movie details
      *  - With DOMPurify, the above code will be sanitized and instead will not be executed (i.e. <img src=a onerror=alert('XSS')> will become <img src="a">)
      */
-    const payload = movieIDsCounter ? {
-      movieID: parseInt(`${DOMPurify.sanitize(movieIDsCounter)}`),
-      name: `${DOMPurify.sanitize(movieName)}`,
-      description: `${DOMPurify.sanitize(movieDescription)}`,
-      releaseDate: `${DOMPurify.sanitize(movieReleaseDate)}`,
-      imageURL: `${DOMPurify.sanitize(movieImageURL)}`,
-      genreID: parseInt(`${DOMPurify.sanitize(movieGenreID)}`),
-      active: `${DOMPurify.sanitize(movieActive)}`,
-      dateInserted: `${formatDate(new Date())}`
-    } : {};
+    const payload = movieIDsCounter
+      ? {
+          movieID: parseInt(`${DOMPurify.sanitize(movieIDsCounter)}`),
+          name: `${DOMPurify.sanitize(movieName)}`,
+          description: `${DOMPurify.sanitize(movieDescription)}`,
+          releaseDate: `${DOMPurify.sanitize(movieReleaseDate)}`,
+          imageURL: `${DOMPurify.sanitize(movieImageURL)}`,
+          genreID: parseInt(`${DOMPurify.sanitize(movieGenreID)}`),
+          active: `${DOMPurify.sanitize(movieActive)}`,
+          dateInserted: `${formatDate(new Date())}`,
+        }
+      : {};
 
     // TO-REMOVE-2 for FCP: Used only for frontend to simulate auto-increment of movieIDs.
     // In reality, this will be handled by the backend DB which will auto-increment the movieIDs for us.
-    setMovieIDsCounter && setMovieIDsCounter(prevCount => prevCount + 1);
+    setMovieIDsCounter && setMovieIDsCounter((prevCount) => prevCount + 1);
     console.log("Logging Sanitized Payload for debugging:", payload);
 
     // Once validation checks all passed and payload is sanitized, we can add the movie details / payload into the in-memory array
     addMovies && addMovies(payload);
 
     // Alert user that movie details have been successfully added or updated (depends on where it's being called from)
-    alert("Movie successfully added or updated to the in-memory array / sessionStorage 😃!");
+    alert("Movie successfully added or updated to the database 😃!");
 
     // Activate the setState hook for 'createMovieSuccess' state and set it to true
     setCreateMovieSuccess && setCreateMovieSuccess(true);
     return true;
   } else {
-    alert("Failed validation checks ❌! \nPlease check your movie details and try again 😢!");
+    alert(
+      "Failed validation checks ❌! \nPlease check your movie details and try again 😢!"
+    );
     setCreateMovieSuccess && setCreateMovieSuccess(false);
     return false;
   }
@@ -138,10 +205,10 @@ export async function logout(event) {
     const requestOptions = {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: null,
-      credentials: "include"
+      credentials: "include",
     };
     const logoutResponse = await fetch(`${API_HOST}/logout`, requestOptions);
     const logoutResponseData = await logoutResponse.json();
@@ -156,16 +223,23 @@ export async function logout(event) {
  *  - b) Also, from deleteOneMovie() dispatcher fn found in App.jsx, when that fn is triggered, it will dispatch an Action to delete a selected movie from the movies array in sessionStorage (see moviesReducer.jsx - case DELETE_ONE_MOVIE)
  */
 
-export function deleteOneMovieDetails(event, movies, deleteOneMovie, setDeleteOneMovieSuccess) {
+export function deleteOneMovieDetails(
+  event,
+  movies,
+  deleteOneMovie,
+  setDeleteOneMovieSuccess
+) {
   try {
     event.preventDefault();
 
     // Get the movie ID of the movie to be deleted
-    const movieID = parseInt(document.getElementById("form-movie-movieID").value.trim());
+    const movieID = parseInt(
+      document.getElementById("form-movie-movieID").value.trim()
+    );
     console.log("Deleting movie with movieID:", movieID);
 
     // Validation check 1 - A validation check to check if that selected movie/movieID exists in the in-memory array/sessionStorage.
-    const movieDetails = movies.find(movie => movie.movieID === movieID);
+    const movieDetails = movies.find((movie) => movie.movieID === movieID);
 
     // The variable 'movieDetails' is essentially the movie object that we want to delete from the in-memory array/sessionStorage
     // Or else, it will be undefined if the movie/movieID does not exist in the in-memory array/sessionStorage
@@ -175,20 +249,31 @@ export function deleteOneMovieDetails(event, movies, deleteOneMovie, setDeleteOn
     if (movieDetails) {
       deleteOneMovie(movieDetails);
     } else {
-      throw new Error("Movie does not exist in the in-memory array 😢! Trying to delete an invalid movie/movieID");
+      throw new Error(
+        "Movie does not exist in the in-memory array 😢! Trying to delete an invalid movie/movieID"
+      );
     }
 
     // Alert user that movie details have been successfully deleted
-    alert("Movie sucessfully deleted from the in-memory array / sessionStorage 😃!");
+    alert(
+      "Movie sucessfully deleted from the in-memory array / sessionStorage 😃!"
+    );
 
     // Activate the setState hook for 'deleteOneMovieSuccess' state and set it to true
     setDeleteOneMovieSuccess(true);
     return true;
   } catch (error) {
-    alert("Failed to delete ONE movie details ❌ due to an unexpected error! \nPlease try again later 😢!");
+    alert(
+      "Failed to delete ONE movie details ❌ due to an unexpected error! \nPlease try again later 😢!"
+    );
     console.log("An unexpected error occurred when deleting movie details.");
-    console.log("Please check if you are trying to delete a movie that does not exist in the in-memory array / sessionStorage.");
-    console.log("Alternatively, check the logs for the actual error msg:", error);
+    console.log(
+      "Please check if you are trying to delete a movie that does not exist in the in-memory array / sessionStorage."
+    );
+    console.log(
+      "Alternatively, check the logs for the actual error msg:",
+      error
+    );
     return false;
   }
 }
@@ -199,44 +284,70 @@ export function deleteOneMovieDetails(event, movies, deleteOneMovie, setDeleteOn
  *  - b) Also, from deleteMultipleMovies() dispatcher fn found in App.jsx, when that fn is triggered, it will dispatch an Action to delete MULTIPLE selected movies from the movies array in sessionStorage (see moviesReducer.jsx - case DELETE_MULTIPLE_MOVIES)
  */
 
-export function deleteMultipleMovieDetails(event, movies, deleteMultipleMovies, setDeleteMultipleMoviesSuccess) {
+export function deleteMultipleMovieDetails(
+  event,
+  movies,
+  deleteMultipleMovies,
+  setDeleteMultipleMoviesSuccess
+) {
   try {
     event.preventDefault();
 
     // Get the movieIDs of all the movies that was selected for deletion
-    const formSelectElement = document.getElementById("form-movie-multiple-movieIDs");
+    const formSelectElement = document.getElementById(
+      "form-movie-multiple-movieIDs"
+    );
     const arrayOfMovieIDs = getSelectedMovieIDs(formSelectElement);
     console.log("Deleting movies with these movieIDs:", arrayOfMovieIDs);
 
     // Validation check 1:
     // - A validation check to check if that selected movies/movieIDs exists in the in-memory array/sessionStorage.
     // - If the movieID doesn't exist, it will be filtered out from the arrayOfSelectedMoviesIDs
-    const arrayOfSelectedMovies = movies.filter(movie => {
+    const arrayOfSelectedMovies = movies.filter((movie) => {
       return arrayOfMovieIDs.includes(movie.movieID);
     });
-    const arrayOfSelectedMoviesIDs = arrayOfSelectedMovies.map(movie => {
+    const arrayOfSelectedMoviesIDs = arrayOfSelectedMovies.map((movie) => {
       return movie.movieID;
     });
-    console.log("All the selected movies IDs in this array: ", arrayOfSelectedMoviesIDs);
+    console.log(
+      "All the selected movies IDs in this array: ",
+      arrayOfSelectedMoviesIDs
+    );
 
     // Once validation checks all passed, delete all the selected multiple movies from the in-memory array/sessionStorage
-    if (Array.isArray(arrayOfSelectedMoviesIDs) && arrayOfSelectedMoviesIDs.length) {
+    if (
+      Array.isArray(arrayOfSelectedMoviesIDs) &&
+      arrayOfSelectedMoviesIDs.length
+    ) {
       deleteMultipleMovies(arrayOfSelectedMoviesIDs);
     } else {
-      throw new Error("Unable to delete multiple movies ❌ as arrayOfSelectedMoviesIDs is undefined or an empty array! You must select at least one movie to delete 😢! ");
+      throw new Error(
+        "Unable to delete multiple movies ❌ as arrayOfSelectedMoviesIDs is undefined or an empty array! You must select at least one movie to delete 😢! "
+      );
     }
 
     // Alert user that multiple movie details have been successfully deleted
-    alert("Multiple movies sucessfully deleted from the in-memory array / sessionStorage 😃!");
+    alert(
+      "Multiple movies sucessfully deleted from the in-memory array / sessionStorage 😃!"
+    );
 
     // Activate the setState hook for 'deleteMultipleMoviesSuccess' state and set it to true
     setDeleteMultipleMoviesSuccess(true);
     return true;
   } catch (error) {
-    alert("Failed to delete MULTIPLE movie details ❌! \nIt could be because you did not click on any option! \nPlease check & try again later 😢!");
-    console.log("An unexpected error occurred when deleting multiple movie details.");
-    console.log("Please check if you are trying to delete movie(s) that do not exist in the in-memory array / sessionStorage.");
-    console.log("Alternatively, check the logs for the actual error msg:", error);
+    alert(
+      "Failed to delete MULTIPLE movie details ❌! \nIt could be because you did not click on any option! \nPlease check & try again later 😢!"
+    );
+    console.log(
+      "An unexpected error occurred when deleting multiple movie details."
+    );
+    console.log(
+      "Please check if you are trying to delete movie(s) that do not exist in the in-memory array / sessionStorage."
+    );
+    console.log(
+      "Alternatively, check the logs for the actual error msg:",
+      error
+    );
     return false;
   }
 }

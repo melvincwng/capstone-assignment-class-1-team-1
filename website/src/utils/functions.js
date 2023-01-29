@@ -139,7 +139,7 @@ export function validateAndAddOrUpdateMovieDetails(
   if (passAllValidationChecks) {
     event.preventDefault();
     alert(
-      "Passed all validation checks ✔️! \nPlease wait while we add or update this movie to the in-memory array / sessionStorage 😀!"
+      "Passed all validation checks ✔️! \nPlease wait while we add or update this movie to the database 😀!"
     );
 
     /**
@@ -171,9 +171,7 @@ export function validateAndAddOrUpdateMovieDetails(
     addMovies && addMovies(payload);
 
     // Alert user that movie details have been successfully added or updated (depends on where it's being called from)
-    alert(
-      "Movie successfully added or updated to the in-memory array / sessionStorage 😃!"
-    );
+    alert("Movie successfully added or updated to the database 😃!");
 
     // Activate the setState hook for 'createMovieSuccess' state and set it to true
     setCreateMovieSuccess && setCreateMovieSuccess(true);
