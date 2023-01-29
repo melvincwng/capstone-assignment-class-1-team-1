@@ -1,10 +1,10 @@
 // movieSlice.js (Contains an array of movies as the state of the store)
 
 import { createSlice } from "@reduxjs/toolkit";
-import { YES, NO, SORT_BY_A_TO_Z, SORT_BY_Z_TO_A, HIDE_PAST_MOVIES, SHOW_PAST_MOVIES, SHOW_ALL_MOVIES, INITIAL_MOVIES as HARDCODED_MOVIES_ARRAY } from "../utils/constants.js";
+import { API_HOST, YES, NO, SORT_BY_A_TO_Z, SORT_BY_Z_TO_A, HIDE_PAST_MOVIES, SHOW_PAST_MOVIES, SHOW_ALL_MOVIES, INITIAL_MOVIES as HARDCODED_MOVIES_ARRAY } from "../utils/constants.js";
 const fetchInitialMoviesFromDB = async () => {
   try {
-    const response = await fetch("http://localhost:8081/movies");
+    const response = await fetch(`${API_HOST}/movies`);
     const data = await response.json();
     console.log("JSON data from /GET movies API route: ", data);
     return data;

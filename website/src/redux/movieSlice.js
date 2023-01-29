@@ -2,6 +2,7 @@
 
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  API_HOST,
   YES,
   NO,
   SORT_BY_A_TO_Z,
@@ -14,7 +15,7 @@ import {
 
 const fetchInitialMoviesFromDB = async () => {
   try {
-    const response = await fetch("http://localhost:8081/movies");
+    const response = await fetch(`${API_HOST}/movies`);
     const data = await response.json();
     console.log("JSON data from /GET movies API route: ", data);
     return data;
