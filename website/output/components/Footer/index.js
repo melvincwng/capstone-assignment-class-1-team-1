@@ -98,13 +98,13 @@ export default function Footer() {
     rel: "noopener noreferrer"
   }, "Melvin Ng,"), "\xA0", /*#__PURE__*/React.createElement("a", {
     className: "text-white",
-    href: "https://github.com/P7461085",
-    target: "_blank",
-    rel: "noopener noreferrer"
-  }, "Chye Yong,"), " ", /*#__PURE__*/React.createElement("a", {
-    className: "text-white",
     href: "https://github.com/vincentkua",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "Zi Lin"), /*#__PURE__*/React.createElement("br", null), "\xA9 2023 IT8907-FCP Class 1 Team 1"));
+  }, "Zi Lin,"), "\xA0", /*#__PURE__*/React.createElement("a", {
+    className: "text-white",
+    href: "https://github.com/P7461085",
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, "Chye Yong"), "\xA0", /*#__PURE__*/React.createElement("br", null), "\xA9 2023 IT8907-FCP Class 1 Team 1"));
 }

@@ -109,20 +109,22 @@ export default function Footer() {
         &nbsp;
         <a
           className="text-white"
-          href="https://github.com/P7461085"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Chye Yong,
-        </a>{" "}
-        <a
-          className="text-white"
           href="https://github.com/vincentkua"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Zi Lin
+          Zi Lin,
         </a>
+        &nbsp;
+        <a
+          className="text-white"
+          href="https://github.com/P7461085"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Chye Yong
+        </a>
+        &nbsp;
         <br />© 2023 IT8907-FCP Class 1 Team 1
       </div>
     </footer>
