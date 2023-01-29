@@ -28,7 +28,6 @@ const corsConfig = {
   credentials: true,
   origin: true,
 };
-app.options("*", cors()); // Include before other routes (for preflight requests)
 app.use(cors(corsConfig)); // You can place this after app.options(…) - *Modified* with corsConfig to make setting/clearing of cookies with JWT work!
 
 // These 2 lines are needed to process cookies (containing our JWT token) in our Express app
