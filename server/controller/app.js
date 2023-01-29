@@ -531,7 +531,7 @@ app.post(
         secure: true,
         sameSite: "none",
       });
-      res.send({ message: "Logged out!" });
+      res.send({ message: "Logged out 🙂!" });
     } catch (err) {
       res.status(500).send(err);
     }
