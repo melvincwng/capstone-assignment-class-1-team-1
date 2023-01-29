@@ -9,8 +9,26 @@ import {
   HIDE_PAST_MOVIES,
   SHOW_PAST_MOVIES,
   SHOW_ALL_MOVIES,
-  INITIAL_MOVIES as initialMoviesArray,
+  INITIAL_MOVIES as HARDCODED_MOVIES_ARRAY,
 } from "../utils/constants";
+
+const fetchInitialMoviesFromDB = async () => {
+  try {
+    const response = await fetch("http://localhost:8081/movies");
+    const data = await response.json();
+    console.log("JSON data from /GET movies API route: ", data);
+    return data;
+  } catch (error) {
+    console.log(error);
+    alert(
+      "An error occurred while fetching the movies from the database 😔\nWe will be using a hardcoded array of movies instead."
+    );
+    return HARDCODED_MOVIES_ARRAY;
+  }
+};
+
+let initialMoviesArray = await fetchInitialMoviesFromDB();
+console.log("initialMoviesArray: ", initialMoviesArray);
 
 export const movieSlice = createSlice({
   name: "Movie Slice",
