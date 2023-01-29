@@ -1,3 +1,5 @@
+import jwt_decode from "jwt-decode";
+import { API_HOST } from "../../utils/constants.js";
 export default function LoginPage({
   setLogin,
   setLoading
@@ -50,28 +52,41 @@ export default function LoginPage({
     return phoneRegex.test(phoneNumber);
   }
   async function loginUser(event) {
-    // KIV - to add axios call in future for /login route (Just a mock login function for now)
-    event.preventDefault();
-    const userEmailOrPhoneNumber = document.getElementById("inputEmailOrPhone").value;
-    const userPassword = document.getElementById("inputPassword").value;
-    if (userEmailOrPhoneNumber === "admin@gmail.com" && userPassword === "password123") {
-      alert("Logging in as Admin ✔️...");
+    try {
+      event.preventDefault();
+      const userEmailOrPhoneNumber = document.getElementById("inputEmailOrPhone").value;
+      const userPassword = document.getElementById("inputPassword").value;
+      const requestOptions = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          email: userEmailOrPhoneNumber,
+          password: userPassword
+        }),
+        credentials: "include"
+      };
+      const loginResponse = await fetch(`${API_HOST}/login`, requestOptions);
+      const loginResponseData = await loginResponse.json();
+      const jwtToken = loginResponseData.jwt?.substring(7); // Remove "Bearer " from JWT token string
+      const decodedJWTPayload = jwt_decode(jwtToken);
+      console.log("loginResponseData: ", loginResponseData);
+      console.log("JWT token:", jwtToken);
+      console.log("Decoded JWT payload:", decodedJWTPayload);
+      const name = decodedJWTPayload.name;
+      const role = decodedJWTPayload.role;
+      const welcomeMessage = `Welcome back, ${decodedJWTPayload.name} 😊\nLogging in as ${decodedJWTPayload.role} ✔️...`;
+      alert(welcomeMessage);
       setLoading(true);
-      await setTimeout(() => {
+      setTimeout(() => {
         setLogin(true);
         sessionStorage.setItem("loggedIn", true);
-        sessionStorage.setItem("role", "admin");
+        sessionStorage.setItem("role", role);
       }, 1500);
-    } else if (userEmailOrPhoneNumber === "user@gmail.com" && userPassword === "password123") {
-      alert("Logging in as Normal User ✔️...");
-      setLoading(true);
-      await setTimeout(() => {
-        setLogin(true);
-        sessionStorage.setItem("loggedIn", true);
-        sessionStorage.setItem("role", "user");
-      }, 1500);
-    } else {
-      alert("Logged in failed! \nPlease enter a valid email / phone number & password 😞");
+    } catch (error) {
+      alert("Login failed! \nPlease enter a valid email / phone number & password 😞");
+      console.log(error);
     }
   }
   return /*#__PURE__*/React.createElement("div", {
@@ -125,7 +140,7 @@ export default function LoginPage({
     id: "warningPassword"
   }, "Your password must contain between 8 to 50 characters.")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
     className: "sign-in-button",
-    onClick: event => loginUser(event)
+    onClick: async event => await loginUser(event)
   }, "Sign In")), /*#__PURE__*/React.createElement("div", {
     className: "remember-me-flexbox"
   }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("input", {

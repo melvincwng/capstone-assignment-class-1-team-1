@@ -1,3 +1,5 @@
+import { API_HOST } from "./constants";
+
 /**
  * A utility function that converts a genre ID to a genre type.
  */
@@ -199,6 +201,32 @@ export function clearSessionStorage() {
   sessionStorage.removeItem("role");
   window.location.hash = "";
   window.location.reload();
+}
+
+/**
+ * A utility function that logout the user when a) the page is refreshed or b) the user clicks on the 'Logout' button
+ */
+
+export async function logout(event) {
+  const isLoggedIn = sessionStorage.getItem("loggedIn");
+
+  if (isLoggedIn) {
+    // When the user refreshes the page, it will create a pop-up alert box that asks the user if they want to 'Reload Site?' & shows 2 options - 'Reload' or 'Cancel'.
+    // Regardless of which option the user chooses, the page will still be refreshed
+    event.returnValue = "";
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: null,
+      credentials: "include",
+    };
+
+    const logoutResponse = await fetch(`${API_HOST}/logout`, requestOptions);
+    const logoutResponseData = await logoutResponse.json();
+    alert(logoutResponseData.message);
+  }
+
+  clearSessionStorage();
 }
 
 /**

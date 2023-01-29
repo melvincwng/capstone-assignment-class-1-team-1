@@ -16,7 +16,7 @@ import Footer from "../Footer";
 import UnauthorizedInvalidPage from "../UnauthorizedInvalidPage";
 import { ErrorBoundary } from "../ErrorBoundary";
 import { NAVBAR_OPTIONS } from "../../utils/constants.js";
-import { clearSessionStorage } from "../../utils/functions";
+import { logout } from "../../utils/functions";
 import {
   FILTER_MOVIES_BY_GENRE,
   ADD_NEW_MOVIE,
@@ -172,15 +172,18 @@ export default function RootPage() {
     updatePinnedMovieInSessionStorageIfSelectedAndPinned;
 
   /**
-   * Explanation of the two useEffects blocks
-   *  - A) When the page is refreshed, we want to clear the sessionStorage first (clear previously edited or manipulated data when adding/removing movies) --> first useEffect
-   *  - B) After clearing the stored movies key/array in sessionStorage, we want to set the movies array to the context of the movies variable which is extracted out from the store aka line 73 (a fresh start) --> second useEffect
-   *  - C) In short, for A & B, we are essentially "reset" the movies array in sessionStorage when reloading the page (A - clear previous data & B - Reinitialize/Reset the data)
+   * Explanation of the first useEffect block
+   *  - A) On refresh of the page, we call the logout function
+   * -  B) Thus allowing us to a) clear the JWT token stored in cookies if present & b) clear the sessionStorage (clear previously edited or manipulated data when adding/removing movies)
+   *
+   * Explanation of the second useEffect block
+   *  - C) After clearing the stored movies key/array in sessionStorage (see point B), we want to set the movies array to the context of the 'movies' variable (i.e. extracted out from the store aka line 73)
+   *  - D) In short, we are essentially "resetting" the movies array in sessionStorage when reloading the page (clear previous data & reinitialize/reset the data)
    */
   React.useEffect(() => {
-    window.addEventListener("beforeunload", clearSessionStorage);
+    window.addEventListener("beforeunload", logout);
     return () => {
-      window.removeEventListener("beforeunload", clearSessionStorage);
+      window.removeEventListener("beforeunload", logout);
     };
   }, []);
 
