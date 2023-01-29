@@ -167,7 +167,7 @@ export default function LoginPage({ setLogin, setLoading }) {
             </div>
             <br />
             <div>
-              <div className="new-to-netflix">
+              <div className="new-to-sp-movies">
                 New to SP Movies?{" "}
                 <a href="#" className="signup-link">
                   Sign up now.
