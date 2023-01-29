@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useOutletContext } from "react-router-dom";
-import { validateAndAddOrUpdateMovieDetails } from "../../utils/functions.js";
+import { formatDate, validateAndAddOrUpdateMovieDetails } from "../../utils/functions.js";
 import MovieDoesNotExist from "./MovieDoesNotExist.js";
 export default function UpdateIndividualMoviePage() {
   const [setUpdateMovieSuccess, updateSelectedMovie, updatePinnedMovie] = useOutletContext();
@@ -64,6 +64,10 @@ export default function UpdateIndividualMoviePage() {
     }));
   }
   console.log("FINAL UPDATED MOVIE: ", selectedMovie);
+
+  // selectedMovieToUpdate.releaseDate obtained from DB is in ISOString format (i.e. 2022-12-25T10:00:00.000Z)
+  // We have to convert it to a format that can be used in the UpdateIndividualMoviePage form (i.e. 2022-12-25 10:00:00)
+  const formattedReleaseDate = formatDate(new Date(selectedMovieToUpdate.releaseDate));
   return movieExists ? /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("b", {
     id: "updateIndividualMovieText"
   }, "Update Movie ", params.movieID, ":"), /*#__PURE__*/React.createElement("form", {
@@ -103,7 +107,7 @@ export default function UpdateIndividualMoviePage() {
     className: "form-control",
     id: "form-movie-release-date",
     placeholder: "2022-12-25 10:00:00",
-    defaultValue: selectedMovieToUpdate.releaseDate,
+    defaultValue: formattedReleaseDate,
     onChange: handleMovieReleaseDateChange
   })), /*#__PURE__*/React.createElement("div", {
     className: "form-group form-div"

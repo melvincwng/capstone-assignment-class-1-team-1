@@ -2,7 +2,10 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useOutletContext } from "react-router-dom";
-import { validateAndAddOrUpdateMovieDetails } from "../../utils/functions";
+import {
+  formatDate,
+  validateAndAddOrUpdateMovieDetails,
+} from "../../utils/functions";
 import MovieDoesNotExist from "./MovieDoesNotExist";
 
 export default function UpdateIndividualMoviePage() {
@@ -81,6 +84,12 @@ export default function UpdateIndividualMoviePage() {
 
   console.log("FINAL UPDATED MOVIE: ", selectedMovie);
 
+  // selectedMovieToUpdate.releaseDate obtained from DB is in ISOString format (i.e. 2022-12-25T10:00:00.000Z)
+  // We have to convert it to a format that can be used in the UpdateIndividualMoviePage form (i.e. 2022-12-25 10:00:00)
+  const formattedReleaseDate = formatDate(
+    new Date(selectedMovieToUpdate.releaseDate)
+  );
+
   return movieExists ? (
     <>
       <b id="updateIndividualMovieText">Update Movie {params.movieID}:</b>
@@ -116,7 +125,7 @@ export default function UpdateIndividualMoviePage() {
             className="form-control"
             id="form-movie-release-date"
             placeholder="2022-12-25 10:00:00"
-            defaultValue={selectedMovieToUpdate.releaseDate}
+            defaultValue={formattedReleaseDate}
             onChange={handleMovieReleaseDateChange}
           />
         </div>

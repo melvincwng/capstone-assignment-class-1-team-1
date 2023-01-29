@@ -1,5 +1,5 @@
 import { YES, NO } from "../../utils/constants";
-import { convertGenreIDToGenreType } from "../../utils/functions";
+import { convertGenreIDToGenreType, formatDate } from "../../utils/functions";
 import { useSelector, useDispatch } from "react-redux";
 import { pinMovie, unpinMovie } from "../../redux/pinnedMovieSlice";
 import { Link } from "react-router-dom";
@@ -61,6 +61,9 @@ export default function Movie({
     setActiveTab(NAVBAR_OPTIONS.UPDATE_MOVIES);
   }
 
+  // Formatting the release date from ISO string (e.g. 2022-09-01T00:00:00.000Z) to a more readable format (e.g. 2022-09-01 00:00:00)
+  const formattedReleaseDate = formatDate(new Date(releaseDate));
+
   return (
     <li className="movieListItem" id={movieID}>
       <a
@@ -82,7 +85,7 @@ export default function Movie({
           <br />
           <div className="reduceFontSize">{description}</div>
           <br />
-          <div className="reduceFontSize">{releaseDate}</div>
+          <div className="reduceFontSize">{formattedReleaseDate}</div>
           <br />
           <div className="reduceFontSize">{genreType}</div>
         </div>
