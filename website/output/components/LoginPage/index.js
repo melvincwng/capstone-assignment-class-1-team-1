@@ -141,7 +141,7 @@ export default function LoginPage({
     className: "coloured_text need-help-link",
     href: "#"
   }, "Need help?"))), /*#__PURE__*/React.createElement("br", null), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
-    className: "new-to-netflix"
+    className: "new-to-sp-movies"
   }, "New to SP Movies?", " ", /*#__PURE__*/React.createElement("a", {
     href: "#",
     className: "signup-link"
