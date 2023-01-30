@@ -57,11 +57,16 @@ export default function UpdateIndividualMoviePage() {
       // Also in the RetrieveMoviePage OR even PinnedMoviesPage, some of the 'Toggle', 'Filter' and 'Pinned Movies' features might still be dependent on sessionStorage, hence to update this too.
       updateSelectedMovie(selectedMovie);
 
-      // After updating the movie (be it approach 1 or 2), we set the state 'updateMovieSuccess' to true so that the RootPage (containing RetrieveMoviePage) can be re-rendered with the updated movie details
-      movieUpdatedInDB && setUpdateMovieSuccess(true);
+      // After updating the movie (be it approach 1 or 2):
+      //  1) We set the state 'updateMovieSuccess' to true so that the RootPage (containing RetrieveMoviePage) can be re-rendered with the updated movie details
+      //  2) We will then update the pinned movie details in sessionStorage (if it exists)
+      //  3) We will then display an alert message to show the user that the movie has been updated successfully
 
-      // After updating the movie (be it approach 1 or 2), this block of code will then update the pinned movie details in sessionStorage (if it exists)
-      movieUpdatedInDB && updatePinnedMovie(selectedMovie);
+      if (movieUpdatedInDB) {
+        setUpdateMovieSuccess(true);
+        updatePinnedMovie(selectedMovie);
+        alert("Movie updated successfully in the sessionStorage and DB! 🎉");
+      }
     }
   }
   function handleMovieNameChange(event) {
