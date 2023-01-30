@@ -201,12 +201,9 @@ export function deleteMultipleMovieDetails(event, movies, deleteMultipleMovies, 
       throw new Error("Unable to delete multiple movies ❌ as arrayOfSelectedMoviesIDs is undefined or an empty array! You must select at least one movie to delete 😢! ");
     }
 
-    // Alert user that multiple movie details have been successfully deleted
-    alert("Multiple movies sucessfully deleted from the in-memory array / sessionStorage 😃!");
-
     // Activate the setState hook for 'deleteMultipleMoviesSuccess' state and set it to true
     setDeleteMultipleMoviesSuccess(true);
-    return true;
+    return arrayOfSelectedMoviesIDs;
   } catch (error) {
     alert("Failed to delete MULTIPLE movie details ❌! \nIt could be because you did not click on any option! \nPlease check & try again later 😢!");
     console.log("An unexpected error occurred when deleting multiple movie details.");

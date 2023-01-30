@@ -307,15 +307,10 @@ export function deleteMultipleMovieDetails(
       );
     }
 
-    // Alert user that multiple movie details have been successfully deleted
-    alert(
-      "Multiple movies sucessfully deleted from the in-memory array / sessionStorage 😃!"
-    );
-
     // Activate the setState hook for 'deleteMultipleMoviesSuccess' state and set it to true
     setDeleteMultipleMoviesSuccess(true);
 
-    return true;
+    return arrayOfSelectedMoviesIDs;
   } catch (error) {
     alert(
       "Failed to delete MULTIPLE movie details ❌! \nIt could be because you did not click on any option! \nPlease check & try again later 😢!"
