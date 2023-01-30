@@ -401,3 +401,32 @@ export async function fetchAllMovies(dispatch, option, showInitialMovies) {
     return [];
   }
 }
+
+/**
+ * A utility function that fetches all movies in A-Z order from the database (i.e. sorted alphabetically from A to Z)
+ * Reference: https://medium.com/@techrally/react-to-async-await-553c43f243e2
+ */
+
+export async function fetchAtoZMovies(dispatch, option, showInitialMovies) {
+  try {
+    const response = await fetch(`${API_HOST}/movies/AtoZ`);
+    const data = await response.json();
+    console.log(
+      "Fetching all A-Z movies via the GET /movies/AtoZ API route: ",
+      data
+    );
+    dispatch(
+      toggleMoviesArray({
+        name: option,
+        showInitialMovies: showInitialMovies,
+        data: data,
+      })
+    );
+  } catch (error) {
+    console.log(error);
+    alert(
+      "An error occurred while fetching the A-Z movies from the database!\nPlease try again later 😔"
+    );
+    return [];
+  }
+}

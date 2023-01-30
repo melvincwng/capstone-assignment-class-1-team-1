@@ -16,7 +16,7 @@ import Footer from "../Footer";
 import UnauthorizedInvalidPage from "../UnauthorizedInvalidPage";
 import { ErrorBoundary } from "../ErrorBoundary";
 import { NAVBAR_OPTIONS } from "../../utils/constants.js";
-import { logout, fetchAllMovies } from "../../utils/functions";
+import { logout, fetchAllMovies, fetchAtoZMovies } from "../../utils/functions";
 import {
   SORT_BY_A_TO_Z,
   SORT_BY_Z_TO_A,
@@ -85,6 +85,9 @@ export default function RootPage() {
     if (option === SHOW_ALL_MOVIES) {
       fetchAllMovies(dispatch, option, showInitialMovies);
       console.log("Fetching all INITIAL movies from database...");
+    } else if (option === SORT_BY_A_TO_Z) {
+      fetchAtoZMovies(dispatch, option, showInitialMovies);
+      console.log("Fetching INITIAL A-Z movies from database...");
     } else {
       dispatch(
         toggleMoviesArray({
@@ -99,6 +102,9 @@ export default function RootPage() {
     if (option === SHOW_ALL_MOVIES) {
       fetchAllMovies(dispatch, option, showInitialMovies);
       console.log("Fetching all NEW movies from database...");
+    } else if (option === SORT_BY_A_TO_Z) {
+      fetchAtoZMovies(dispatch, option, showInitialMovies);
+      console.log("Fetching NEW A-Z movies from database...");
     } else {
       dispatch(toggleMoviesArray({ name: option, showInitialMovies: false }));
     }
