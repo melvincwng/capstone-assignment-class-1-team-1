@@ -44,7 +44,7 @@ export function formatDate(date) {
  *  - b) Validates & Updates a movie if the user is in the 'Update Movie' page
  */
 
-export function validateAndAddOrUpdateMovieDetails(event, movieIDsCounter, setMovieIDsCounter, addMovies, setCreateMovieSuccess) {
+export function validateAndAddOrUpdateMovieDetails(event, addMovies, setCreateMovieSuccess) {
   console.log("Validating movie details...");
   const movieName = document.getElementById("form-movie-name").value.trim();
   const movieDescription = document.getElementById("form-movie-description").value.trim();
@@ -81,31 +81,22 @@ export function validateAndAddOrUpdateMovieDetails(event, movieIDsCounter, setMo
      *  - Without DOMPurify, the above code will be executed and an alert box will pop up mimicking an XSS attack, when the payload is sent to & stored in the in-memory array / sessionStorage, and the movie details page is rendered with the XSS movie details
      *  - With DOMPurify, the above code will be sanitized and instead will not be executed (i.e. <img src=a onerror=alert('XSS')> will become <img src="a">)
      */
-    const payload = movieIDsCounter ? {
-      movieID: parseInt(`${DOMPurify.sanitize(movieIDsCounter)}`),
+    const payload = {
       name: `${DOMPurify.sanitize(movieName)}`,
       description: `${DOMPurify.sanitize(movieDescription)}`,
       releaseDate: `${DOMPurify.sanitize(movieReleaseDate)}`,
       imageURL: `${DOMPurify.sanitize(movieImageURL)}`,
       genreID: parseInt(`${DOMPurify.sanitize(movieGenreID)}`),
-      active: `${DOMPurify.sanitize(movieActive)}`,
-      dateInserted: `${formatDate(new Date())}`
-    } : {};
-
-    // TO-REMOVE-2 for FCP: Used only for frontend to simulate auto-increment of movieIDs.
-    // In reality, this will be handled by the backend DB which will auto-increment the movieIDs for us.
-    setMovieIDsCounter && setMovieIDsCounter(prevCount => prevCount + 1);
+      active: `${DOMPurify.sanitize(movieActive)}`
+    };
     console.log("Logging Sanitized Payload for debugging:", payload);
 
-    // Once validation checks all passed and payload is sanitized, we can add the movie details / payload into the in-memory array
+    // Once validation checks all passed and payload is sanitized, we can add the movie details / payload into the sessionStorage (some features of the app are dependent on sessionStorage)
     addMovies && addMovies(payload);
-
-    // Alert user that movie details have been successfully added or updated (depends on where it's being called from)
-    alert("Movie successfully added or updated to the sessionStorage & database 😃!");
 
     // Activate the setState hook for 'createMovieSuccess' state and set it to true
     setCreateMovieSuccess && setCreateMovieSuccess(true);
-    return true;
+    return payload;
   } else {
     alert("Failed validation checks ❌! \nPlease check your movie details and try again 😢!");
     setCreateMovieSuccess && setCreateMovieSuccess(false);

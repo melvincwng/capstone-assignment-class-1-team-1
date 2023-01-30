@@ -2,12 +2,7 @@ import CreateMovieForm from "./CreateMovieForm";
 import { useOutletContext } from "react-router-dom";
 
 export default function CreateMoviePage(props) {
-  const [
-    setCreateMovieSuccess,
-    addMovies,
-    setMovieIDsCounter,
-    movieIDsCounter,
-  ] = useOutletContext();
+  const [setCreateMovieSuccess, addMovies] = useOutletContext();
 
   return (
     <>
@@ -15,8 +10,6 @@ export default function CreateMoviePage(props) {
       <CreateMovieForm
         setCreateMovieSuccess={setCreateMovieSuccess}
         addMovies={addMovies}
-        setMovieIDsCounter={setMovieIDsCounter}
-        movieIDsCounter={movieIDsCounter}
       />
     </>
   );

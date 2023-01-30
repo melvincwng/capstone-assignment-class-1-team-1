@@ -24,7 +24,6 @@ import { Outlet } from "react-router-dom";
 export default function RootPage() {
   /**
    * Setting up a bunch of states, context, reducer, dispatcher functions to be passed down to the components
-   * TO-REMOVE-1 for FCP: const [movieIDsCounter, setMovieIDsCounter] is used only for frontend to simulate auto-increment of movieIDs.
    * In reality, this will be handled by the backend DB which will auto-increment the movieIDs for us.
    */
   const [login, setLogin] = React.useState(false);
@@ -47,7 +46,6 @@ export default function RootPage() {
     return store.movie.value;
   });
   const dispatch = useDispatch();
-  const [movieIDsCounter, setMovieIDsCounter] = React.useState(movies.length + 1);
   const toggleMoviesFromInitialMoviesArray = function (option) {
     let showInitialMovies = true;
     if (option === SHOW_ALL_MOVIES) {
@@ -178,7 +176,7 @@ export default function RootPage() {
   })), /*#__PURE__*/React.createElement(ErrorBoundary, null, /*#__PURE__*/React.createElement(MainDivWrapperComponent, null, userAtRetrieveMoviePage ? /*#__PURE__*/React.createElement(Outlet, {
     context: [toggleMovies, filterMovies, setActiveTab]
   }) : userAtCreateMoviePage && loggedIn && isAdmin ? /*#__PURE__*/React.createElement(Outlet, {
-    context: [setCreateMovieSuccess, addMovies, setMovieIDsCounter, movieIDsCounter]
+    context: [setCreateMovieSuccess, addMovies]
   }) : userAtDeleteMoviePage && loggedIn && isAdmin ? /*#__PURE__*/React.createElement(Outlet, {
     context: [setDeleteOneMovieSuccess, deleteOneMovie, setDeleteMultipleMoviesSuccess, deleteMultipleMovies]
   }) : (userAtUpdateMoviesPage || userAtUpdateIndividualMoviePage) && loggedIn && isAdmin ? /*#__PURE__*/React.createElement(Outlet, {
