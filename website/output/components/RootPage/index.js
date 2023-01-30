@@ -45,6 +45,8 @@ export default function RootPage() {
   const movies = useSelector(function (store) {
     return store.movie.value;
   });
+  const lastMovie = movies[movies.length - 1] || {};
+  const [movieIDCounter, setMovieIDCounter] = React.useState(lastMovie.movieID || 0);
   const dispatch = useDispatch();
   const toggleMoviesFromInitialMoviesArray = function (option) {
     let showInitialMovies = true;
@@ -176,7 +178,7 @@ export default function RootPage() {
   })), /*#__PURE__*/React.createElement(ErrorBoundary, null, /*#__PURE__*/React.createElement(MainDivWrapperComponent, null, userAtRetrieveMoviePage ? /*#__PURE__*/React.createElement(Outlet, {
     context: [toggleMovies, filterMovies, setActiveTab]
   }) : userAtCreateMoviePage && loggedIn && isAdmin ? /*#__PURE__*/React.createElement(Outlet, {
-    context: [setCreateMovieSuccess, addMovies]
+    context: [setCreateMovieSuccess, addMovies, setMovieIDCounter, movieIDCounter]
   }) : userAtDeleteMoviePage && loggedIn && isAdmin ? /*#__PURE__*/React.createElement(Outlet, {
     context: [setDeleteOneMovieSuccess, deleteOneMovie, setDeleteMultipleMoviesSuccess, deleteMultipleMovies]
   }) : (userAtUpdateMoviesPage || userAtUpdateIndividualMoviePage) && loggedIn && isAdmin ? /*#__PURE__*/React.createElement(Outlet, {

@@ -74,6 +74,10 @@ export default function RootPage() {
   const movies = useSelector(function (store) {
     return store.movie.value;
   });
+  const lastMovie = movies[movies.length - 1] || {};
+  const [movieIDCounter, setMovieIDCounter] = React.useState(
+    lastMovie.movieID || 0
+  );
   const dispatch = useDispatch();
 
   const toggleMoviesFromInitialMoviesArray = function (option) {
@@ -238,7 +242,14 @@ export default function RootPage() {
           {userAtRetrieveMoviePage ? (
             <Outlet context={[toggleMovies, filterMovies, setActiveTab]} />
           ) : userAtCreateMoviePage && loggedIn && isAdmin ? (
-            <Outlet context={[setCreateMovieSuccess, addMovies]} />
+            <Outlet
+              context={[
+                setCreateMovieSuccess,
+                addMovies,
+                setMovieIDCounter,
+                movieIDCounter,
+              ]}
+            />
           ) : userAtDeleteMoviePage && loggedIn && isAdmin ? (
             <Outlet
               context={[

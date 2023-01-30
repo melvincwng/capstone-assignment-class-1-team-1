@@ -72,7 +72,9 @@ export function formatDate(date) {
 export function validateAndAddOrUpdateMovieDetails(
   event,
   addMovies,
-  setCreateMovieSuccess
+  setCreateMovieSuccess,
+  movieIDCounter,
+  setMovieIDCounter
 ) {
   console.log("Validating movie details...");
   const movieName = document.getElementById("form-movie-name").value.trim();
@@ -142,12 +144,25 @@ export function validateAndAddOrUpdateMovieDetails(
     );
 
     /**
+     * Fix for the following issue:
+     * - When the user is in the 'Create Movie' page, after adding a new movie, and then...
+     * - Clicking on the 'Delete Movie' page, the latest added movie will appear as a blank option (i.e. <option value=""></option>) in the dropdown list
+     * - This is because the movieID of the latest added movie is not being added in the movies array of sessionStorage
+     * - Hence, this block of code will fix the above mentioned issue (to have a seamless flow)
+     */
+    const newMovieID = movieIDCounter && movieIDCounter + 1;
+    setMovieIDCounter && setMovieIDCounter((prevCount) => prevCount + 1);
+    console.log("Testing: Old Movie ID before update +1 --->", movieIDCounter);
+    console.log("Testing: New Movie ID after update +1 --->", newMovieID);
+
+    /**
      * Sanitize all user input using DOMPurify to prevent XSS attacks:
      *  - e.g. <img src=a onerror=alert('XSS')>
      *  - Without DOMPurify, the above code will be executed and an alert box will pop up mimicking an XSS attack, when the payload is sent to & stored in the in-memory array / sessionStorage, and the movie details page is rendered with the XSS movie details
      *  - With DOMPurify, the above code will be sanitized and instead will not be executed (i.e. <img src=a onerror=alert('XSS')> will become <img src="a">)
      */
     const payload = {
+      movieID: parseInt(`${DOMPurify.sanitize(newMovieID)}`),
       name: `${DOMPurify.sanitize(movieName)}`,
       description: `${DOMPurify.sanitize(movieDescription)}`,
       releaseDate: `${DOMPurify.sanitize(movieReleaseDate)}`,
@@ -196,14 +211,11 @@ export function clearSessionStorage() {
  */
 
 export function deleteOneMovieDetails(
-  event,
   movies,
   deleteOneMovie,
   setDeleteOneMovieSuccess
 ) {
   try {
-    event.preventDefault();
-
     // Get the movie ID of the movie to be deleted
     const movieID = parseInt(
       document.getElementById("form-movie-movieID").value.trim()
@@ -226,15 +238,10 @@ export function deleteOneMovieDetails(
       );
     }
 
-    // Alert user that movie details have been successfully deleted
-    alert(
-      "Movie sucessfully deleted from the in-memory array / sessionStorage 😃!"
-    );
-
     // Activate the setState hook for 'deleteOneMovieSuccess' state and set it to true
     setDeleteOneMovieSuccess(true);
 
-    return true;
+    return movieID.toString();
   } catch (error) {
     alert(
       "Failed to delete ONE movie details ❌ due to an unexpected error! \nPlease try again later 😢!"

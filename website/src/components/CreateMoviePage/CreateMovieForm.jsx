@@ -6,7 +6,12 @@
 import { validateAndAddOrUpdateMovieDetails } from "../../utils/functions";
 import { API_HOST } from "./../../utils/constants";
 
-export default function CreateMovieForm({ setCreateMovieSuccess, addMovies }) {
+export default function CreateMovieForm({
+  setCreateMovieSuccess,
+  addMovies,
+  setMovieIDCounter,
+  movieIDCounter,
+}) {
   async function addMovieDetailsInTheDB(validatedDetails) {
     try {
       // Need to format the payload to a certain format before sending the POST request to the API endpoint
@@ -44,15 +49,20 @@ export default function CreateMovieForm({ setCreateMovieSuccess, addMovies }) {
     // Prevents form from refreshing the page
     event.preventDefault();
 
-    // 'validatedDetails' would contain the movie payload to add (i.e. POST) to DB
+    // Approach 1 (for WDF): Call validateAndAddOrUpdateMovieDetails() to validate the movie details & add it to sessionStorage if ok
+    // Certain features in the web app are dependent on sessionStorage, hence to do this step too
+    // When that function has finish executing, it will return a movie payload object which is assigned to the variable 'validatedDetails'
+    // This would then be used in the POST /movies request to add the movie details directly into the DB (see approach 2 below)
     const validatedDetails = validateAndAddOrUpdateMovieDetails(
       event,
       addMovies,
-      setCreateMovieSuccess
+      setCreateMovieSuccess,
+      movieIDCounter,
+      setMovieIDCounter
     );
 
     if (validatedDetails) {
-      // Approach 1 (for FCP): Need to hit the POST /movies API endpoint to add the movie details directly in the DB
+      // Approach 2 (for FCP): Need to hit the POST /movies API endpoint to add the movie details directly in the DB
       const movieAddedInDB = await addMovieDetailsInTheDB(validatedDetails);
 
       if (movieAddedInDB) {
