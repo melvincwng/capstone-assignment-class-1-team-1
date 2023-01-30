@@ -81,8 +81,8 @@ export default function RootPage() {
   );
 
   const toggleMoviesFromInitialMoviesArray = function (option) {
+    let showInitialMovies = true;
     if (option === SHOW_ALL_MOVIES) {
-      let showInitialMovies = true;
       fetchAllMovies(dispatch, option, showInitialMovies);
       console.log("Fetching all INITIAL movies from database...");
     } else {
@@ -95,8 +95,8 @@ export default function RootPage() {
     }
   };
   const toggleMoviesFromNewMoviesArray = function (option) {
+    let showInitialMovies = false;
     if (option === SHOW_ALL_MOVIES) {
-      let showInitialMovies = false;
       fetchAllMovies(dispatch, option, showInitialMovies);
       console.log("Fetching all NEW movies from database...");
     } else {
