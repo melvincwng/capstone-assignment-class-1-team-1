@@ -14,7 +14,7 @@ import Footer from "../Footer/index.js";
 import UnauthorizedInvalidPage from "../UnauthorizedInvalidPage/index.js";
 import { ErrorBoundary } from "../ErrorBoundary/index.js";
 import { NAVBAR_OPTIONS } from "../../utils/constants.js";
-import { logout, fetchAllMovies } from "../../utils/functions.js";
+import { logout, fetchAllMovies, fetchAtoZMovies, fetchZtoAMovies } from "../../utils/functions.js";
 import { SORT_BY_A_TO_Z, SORT_BY_Z_TO_A, SHOW_ALL_MOVIES, FILTER_MOVIES_BY_GENRE, ADD_NEW_MOVIE, DELETE_ONE_MOVIE, DELETE_MULTIPLE_MOVIES, UPDATE_MOVIES, UPDATE_PINNED_MOVIES } from "../../utils/constants.js";
 import { MoviesContext } from "../../context/moviesContext.js"; // import moviesReducer from "./reducer/moviesReducer";
 import { useSelector, useDispatch } from "react-redux";
@@ -53,6 +53,12 @@ export default function RootPage() {
     if (option === SHOW_ALL_MOVIES) {
       fetchAllMovies(dispatch, option, showInitialMovies);
       console.log("Fetching all INITIAL movies from database...");
+    } else if (option === SORT_BY_A_TO_Z) {
+      fetchAtoZMovies(dispatch, option, showInitialMovies);
+      console.log("Fetching INITIAL A-Z movies from database...");
+    } else if (option === SORT_BY_Z_TO_A) {
+      fetchZtoAMovies(dispatch, option, showInitialMovies);
+      console.log("Fetching INITIAL Z-A movies from database...");
     } else {
       dispatch(toggleMoviesArray({
         name: option,
@@ -65,6 +71,12 @@ export default function RootPage() {
     if (option === SHOW_ALL_MOVIES) {
       fetchAllMovies(dispatch, option, showInitialMovies);
       console.log("Fetching all NEW movies from database...");
+    } else if (option === SORT_BY_A_TO_Z) {
+      fetchAtoZMovies(dispatch, option, showInitialMovies);
+      console.log("Fetching NEW A-Z movies from database...");
+    } else if (option === SORT_BY_Z_TO_A) {
+      fetchZtoAMovies(dispatch, option, showInitialMovies);
+      console.log("Fetching NEW Z-A movies from database...");
     } else {
       dispatch(toggleMoviesArray({
         name: option,

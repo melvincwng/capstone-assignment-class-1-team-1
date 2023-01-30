@@ -41,6 +41,9 @@ export const movieSlice = createSlice({
             //   }
             //   return 0;
             // });
+
+            // This is for FCP (i.e. integrate FE redux logic with Backend API/Databases)
+            state.value = action.payload.data;
             break;
           case SORT_BY_Z_TO_A:
             // This was for WDF Pure Frontend logic (without Backend API/Databases)
@@ -56,6 +59,9 @@ export const movieSlice = createSlice({
             //   }
             //   return 0;
             // });
+
+            // This is for FCP (i.e. integrate FE redux logic with Backend API/Databases)
+            state.value = action.payload.data;
             break;
           case HIDE_PAST_MOVIES:
             state.value = initialMoviesArray;
@@ -85,6 +91,9 @@ export const movieSlice = createSlice({
             //     return 0;
             //   }
             // );
+
+            // This is for FCP (i.e. integrate FE redux logic with Backend API/Databases)
+            state.value = action.payload.data;
             break;
           case SORT_BY_Z_TO_A:
             // This was for WDF Pure Frontend logic (without Backend API/Databases)
@@ -99,6 +108,9 @@ export const movieSlice = createSlice({
             //     return 0;
             //   }
             // );
+
+            // This is for FCP (i.e. integrate FE redux logic with Backend API/Databases)
+            state.value = action.payload.data;
             break;
           case HIDE_PAST_MOVIES:
             state.value = JSON.parse(sessionStorage.getItem("movies")).filter(movie => movie.active === YES);
