@@ -219,27 +219,27 @@ export const ABOUT_US_DATA = [
     clickHereText: "Click here",
   },
   {
-    imageURL: "https://avatars.githubusercontent.com/u/120546181?v=4",
+    imageURL: "https://avatars.githubusercontent.com/u/116080975?v=4",
     frontCardName: "Member 2",
     frontCardTextOne:
-      "Placeholder text for member 2 (Max ~300 chars) dolor sit ame Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor Lorem ipsum Lorem ipsum dolor sit dolor sit Lorem ipsum dolor sit dolor sit Lorem ipsum dolor sit dolor sit Lorem ipsum dolor sit dolor sit ipsum dolor sit dolor sit.",
+      "Kua is a software developer & the team member for this Full-stack Capstone Project (FCP). He is responsible to team-work with the team-leader and another team member and implement a feature that gets the movie sorted in Z to A ",
     frontCardTextTwo: "👉 Hover over the card to find out more",
     backCardTextOne: "Additional Details:",
     backCardTextTwoArray: [
-      "Placeholder text 1",
-      "Placeholder text 2",
-      "Placeholder text 3",
-      "Placeholder text 4",
+      "Software Debugging and Review",
+      "Implement the feature that gets the movie sorted in Z to A",
+      "Update and beautify the readme document",
+      "Update the review the Team Pull Request",
     ],
     githubText: "GitHub Profile:",
-    githubURL: "https://github.com/placeholder",
+    githubURL: "https://github.com/vincentkua",
     clickHereText: "Click here",
   },
   {
-    imageURL: "https://avatars.githubusercontent.com/u/120546181?v=4",
+    imageURL: "https://avatars.githubusercontent.com/u/116081202?v=4",
     frontCardName: "Sean Ng",
     frontCardTextOne:
-      "Sean brings more than 20 years of experience in IT project management and creative leadership—along with a passion for teaching and community-building—to his work as a consultant and coach. For this project he has develop a feature that gets the movie sorted in A to Z ",
+      "Sean brings more than 20 years of experience in IT project management and creative leadership—along with a passion for teaching and community-building—to his work as a consultant and coach. For this project he has developed a feature that gets movies sorted in A to Z order.",
     frontCardTextTwo: "👉 Hover over the card to find out more",
     backCardTextOne: "Additional Details:",
     backCardTextTwoArray: [
@@ -247,8 +247,6 @@ export const ABOUT_US_DATA = [
       "Complete tasks in areas of expertise",
       "Deliver project responsibilities within deadlines",
       "Communicate with project lead on roadblocks",
-      "Document progress, setbacks, and new processes",
-
     ],
     githubText: "GitHub Profile:",
     githubURL: "https://github.com/P7461085",
