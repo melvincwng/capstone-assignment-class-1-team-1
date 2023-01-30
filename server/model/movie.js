@@ -372,6 +372,40 @@ var movieDB = {
       }
     });
   },
+  deleteMultipleMovies: function (movieIDs, callback) {
+    // movieIDs is an array of movieIDs (e.g. [1,2,3])
+    var conn = db.getConnection();
+    //implement the database query and return result if successful
+    conn.connect(function (err) {
+      if (err) {
+        console.log(err);
+        return callback(err, null);
+      } else {
+        console.log("Connected!");
+        var initialSQL = "DELETE FROM movie WHERE movieID IN (PLACEHOLDER)";
+        var lengthOfMovieIDsArray = movieIDs.length;
+        // formattedSQL looks something like this '"DELETE FROM movie WHERE movieID IN (?,?,?)'
+        var formattedSQL = initialSQL.replace(
+          "PLACEHOLDER",
+          "?".repeat(lengthOfMovieIDsArray).split("").join(",")
+        );
+        conn.query(formattedSQL, movieIDs, function (err, result) {
+          // Close the connection after querying to save connection resources
+          conn.end();
+          if (err) {
+            console.log(err);
+            return callback(err, null);
+          } else {
+            console.log(
+              "Delete multiple movies - result: ",
+              result.affectedRows
+            );
+            return callback(null, result.affectedRows);
+          }
+        });
+      }
+    });
+  },
 };
 
 module.exports = movieDB;
