@@ -16,8 +16,11 @@ import Footer from "../Footer";
 import UnauthorizedInvalidPage from "../UnauthorizedInvalidPage";
 import { ErrorBoundary } from "../ErrorBoundary";
 import { NAVBAR_OPTIONS } from "../../utils/constants.js";
-import { logout } from "../../utils/functions";
+import { logout, fetchAllMovies } from "../../utils/functions";
 import {
+  SORT_BY_A_TO_Z,
+  SORT_BY_Z_TO_A,
+  SHOW_ALL_MOVIES,
   FILTER_MOVIES_BY_GENRE,
   ADD_NEW_MOVIE,
   DELETE_ONE_MOVIE,
@@ -78,15 +81,27 @@ export default function RootPage() {
   );
 
   const toggleMoviesFromInitialMoviesArray = function (option) {
-    dispatch(
-      toggleMoviesArray({
-        name: option,
-        showInitialMovies: true,
-      })
-    );
+    if (option === SHOW_ALL_MOVIES) {
+      let showInitialMovies = true;
+      fetchAllMovies(dispatch, option, showInitialMovies);
+      console.log("Fetching all INITIAL movies from database...");
+    } else {
+      dispatch(
+        toggleMoviesArray({
+          name: option,
+          showInitialMovies: true,
+        })
+      );
+    }
   };
   const toggleMoviesFromNewMoviesArray = function (option) {
-    dispatch(toggleMoviesArray({ name: option, showInitialMovies: false }));
+    if (option === SHOW_ALL_MOVIES) {
+      let showInitialMovies = false;
+      fetchAllMovies(dispatch, option, showInitialMovies);
+      console.log("Fetching all NEW movies from database...");
+    } else {
+      dispatch(toggleMoviesArray({ name: option, showInitialMovies: false }));
+    }
   };
   const filterMoviesFromInitialMoviesArray = function (genre) {
     dispatch(

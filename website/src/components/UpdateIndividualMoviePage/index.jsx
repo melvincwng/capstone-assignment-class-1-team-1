@@ -70,20 +70,16 @@ export default function UpdateIndividualMoviePage() {
     const validatedDetails = validateAndAddOrUpdateMovieDetails(event);
 
     if (validatedDetails) {
-      // Approach for FCP: Need to hit the PUT /movies/:movieID API endpoint to update the movie details in the DB
+      // Approach 1 (for FCP): Need to hit the PUT /movies/:movieID API endpoint to update the movie details directly in the DB
       const movieUpdatedInDB = await updateMovieDetailsInTheDB();
 
-      // Approach for WDF: This updates the selected movie details in sessionStorage (so that when user navigates back to the RetrieveMoviePage after clicking another page, the updated movie details are also displayed there accordingly - seamless flow)
-      // On initial load/login --> user hits the GET /movies API endpoint to retrieve the movies from the DB --> This is only done ONCE (i.e. when the user logs in)
-      // But subsequently, when the user navigates to other pages to do other things (e.g. go to Update Movies page to update movies) & then navigates back to the RetrieveMoviePage, the movies shown there are actually retrieved from sessionStorage (can refer to Line 23 of NavBar.jsx which is linked to movieSlice.js's toggleMoviesArray - line 123)
-      // Hence, we need to update the movies array in sessionStorage with the updated movie details as well (besides just updating the movies array in the DB) so that the updated movie details are also displayed on the RetrieveMoviePage
-      // Refer to RootPage.jsx for more details (see the comments on the very top - Lines 1-9 on the flow of the movies array)
+      // Approach 2 (for WDF): This updates the selected movie details in sessionStorage (Pure FE/WDF approach is to update the movie details in sessionStorage so that when user navigates back to the RetrieveMoviePage, the updated movie details will be displayed)
       updateSelectedMovie(selectedMovie);
 
-      // Set the state 'updateMovieSuccess' to true so that the RootPage (containing RetrieveMoviePage) can be re-rendered with the updated movie details
+      // After updating the movie (be it approach 1 or 2), we set the state 'updateMovieSuccess' to true so that the RootPage (containing RetrieveMoviePage) can be re-rendered with the updated movie details
       movieUpdatedInDB && setUpdateMovieSuccess(true);
 
-      // This block of code updates the pinned movie details in sessionStorage (if it exists)
+      // After updating the movie (be it approach 1 or 2), this block of code will then update the pinned movie details in sessionStorage (if it exists)
       movieUpdatedInDB && updatePinnedMovie(selectedMovie);
     }
   }

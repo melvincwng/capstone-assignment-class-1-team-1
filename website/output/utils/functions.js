@@ -1,6 +1,7 @@
-import { API_HOST } from "./constants.js"; /**
-                                            * A utility function that converts a genre ID to a genre type.
-                                            */
+import { API_HOST } from "./constants.js";
+import { toggleMoviesArray } from "../redux/movieSlice.js"; /**
+                                                             * A utility function that converts a genre ID to a genre type.
+                                                             */
 export const convertGenreIDToGenreType = genreID => {
   const genreType = genreID === 1 ? "Action" : genreID === 2 ? "Anime" : genreID === 3 ? "Fantasy" : genreID === 4 ? "Sci-fi" : "Unknown";
   return genreType;
@@ -126,31 +127,6 @@ export function clearSessionStorage() {
 }
 
 /**
- * A utility function that logout the user when a) the page is refreshed or b) the user clicks on the 'Logout' button
- */
-
-export async function logout(event) {
-  const isLoggedIn = sessionStorage.getItem("loggedIn");
-  if (isLoggedIn) {
-    // When the user refreshes the page, it will create a pop-up alert box that asks the user if they want to 'Reload Site?' & shows 2 options - 'Reload' or 'Cancel'.
-    // Regardless of which option the user chooses, the page will still be refreshed
-    event.returnValue = "";
-    const requestOptions = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: null,
-      credentials: "include"
-    };
-    const logoutResponse = await fetch(`${API_HOST}/logout`, requestOptions);
-    const logoutResponseData = await logoutResponse.json();
-    alert(logoutResponseData.message);
-  }
-  clearSessionStorage();
-}
-
-/**
  * A utility function that:
  *  - a) Deletes ONE movie in the 'Delete Movie' page / DeleteMovieForm.jsx component
  *  - b) Also, from deleteOneMovie() dispatcher fn found in App.jsx, when that fn is triggered, it will dispatch an Action to delete a selected movie from the movies array in sessionStorage (see moviesReducer.jsx - case DELETE_ONE_MOVIE)
@@ -257,4 +233,51 @@ export function getSelectedMovieIDs(selectElement) {
     }
   }
   return result;
+}
+
+/**
+ * A utility function that logout the user when a) the page is refreshed or b) the user clicks on the 'Logout' button
+ */
+
+export async function logout(event) {
+  const isLoggedIn = sessionStorage.getItem("loggedIn");
+  if (isLoggedIn) {
+    // When the user refreshes the page, it will create a pop-up alert box that asks the user if they want to 'Reload Site?' & shows 2 options - 'Reload' or 'Cancel'.
+    // Regardless of which option the user chooses, the page will still be refreshed
+    event.returnValue = "";
+    const requestOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: null,
+      credentials: "include"
+    };
+    const logoutResponse = await fetch(`${API_HOST}/logout`, requestOptions);
+    const logoutResponseData = await logoutResponse.json();
+    alert(logoutResponseData.message);
+  }
+  clearSessionStorage();
+}
+
+/**
+ * A utility function that fetches all movies from the database (i.e. ranked based on their movieID & order of insertion - ascending order)
+ * Reference: https://medium.com/@techrally/react-to-async-await-553c43f243e2
+ */
+
+export async function fetchAllMovies(dispatch, option, showInitialMovies) {
+  try {
+    const response = await fetch(`${API_HOST}/movies`);
+    const data = await response.json();
+    console.log("Fetching all the movies via the GET /movies API route: ", data);
+    dispatch(toggleMoviesArray({
+      name: option,
+      showInitialMovies: showInitialMovies,
+      data: data
+    }));
+  } catch (error) {
+    console.log(error);
+    alert("An error occurred while fetching all the movies from the database!\nPlease try again later 😔");
+    return [];
+  }
 }

@@ -14,8 +14,8 @@ import Footer from "../Footer/index.js";
 import UnauthorizedInvalidPage from "../UnauthorizedInvalidPage/index.js";
 import { ErrorBoundary } from "../ErrorBoundary/index.js";
 import { NAVBAR_OPTIONS } from "../../utils/constants.js";
-import { logout } from "../../utils/functions.js";
-import { FILTER_MOVIES_BY_GENRE, ADD_NEW_MOVIE, DELETE_ONE_MOVIE, DELETE_MULTIPLE_MOVIES, UPDATE_MOVIES, UPDATE_PINNED_MOVIES } from "../../utils/constants.js";
+import { logout, fetchAllMovies } from "../../utils/functions.js";
+import { SORT_BY_A_TO_Z, SORT_BY_Z_TO_A, SHOW_ALL_MOVIES, FILTER_MOVIES_BY_GENRE, ADD_NEW_MOVIE, DELETE_ONE_MOVIE, DELETE_MULTIPLE_MOVIES, UPDATE_MOVIES, UPDATE_PINNED_MOVIES } from "../../utils/constants.js";
 import { MoviesContext } from "../../context/moviesContext.js"; // import moviesReducer from "./reducer/moviesReducer";
 import { useSelector, useDispatch } from "react-redux";
 import { toggleMoviesArray, filterMoviesArray, addNewMovieDetails, deleteOneMovieDetails, deleteMultipleMoviesDetails, updateMovieDetails } from "../../redux/movieSlice.js";
@@ -49,16 +49,28 @@ export default function RootPage() {
   const dispatch = useDispatch();
   const [movieIDsCounter, setMovieIDsCounter] = React.useState(movies.length + 1);
   const toggleMoviesFromInitialMoviesArray = function (option) {
-    dispatch(toggleMoviesArray({
-      name: option,
-      showInitialMovies: true
-    }));
+    if (option === SHOW_ALL_MOVIES) {
+      let showInitialMovies = true;
+      fetchAllMovies(dispatch, option, showInitialMovies);
+      console.log("Fetching all INITIAL movies from database...");
+    } else {
+      dispatch(toggleMoviesArray({
+        name: option,
+        showInitialMovies: true
+      }));
+    }
   };
   const toggleMoviesFromNewMoviesArray = function (option) {
-    dispatch(toggleMoviesArray({
-      name: option,
-      showInitialMovies: false
-    }));
+    if (option === SHOW_ALL_MOVIES) {
+      let showInitialMovies = false;
+      fetchAllMovies(dispatch, option, showInitialMovies);
+      console.log("Fetching all NEW movies from database...");
+    } else {
+      dispatch(toggleMoviesArray({
+        name: option,
+        showInitialMovies: false
+      }));
+    }
   };
   const filterMoviesFromInitialMoviesArray = function (genre) {
     dispatch(filterMoviesArray({
