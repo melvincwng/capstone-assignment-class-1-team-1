@@ -270,6 +270,27 @@ app.put(
   }
 );
 
+// Delete a movie (ADDITIONAL endpoint created for FCP project - not part of original BDD requirements actually)
+// Protected resource that requires admin login. Normal user or not logged in personnel should not be able to access this resource.
+app.delete(
+  "/movies/:movieID",
+  verificationLib.verifyIsLoggedInWithValidJWT,
+  verificationLib.verifyIsAdmin,
+  function (req, res) {
+    var movieID = req.params.movieID;
+    movie.deleteMovie(movieID, function (err, result) {
+      if (!err) {
+        result = result + " movie deleted!";
+        console.log(result);
+        res.status(200).send({ message: result });
+      } else {
+        console.log(err);
+        res.status(500).send({ message: "An unexpected error has occurred!" });
+      }
+    });
+  }
+);
+
 // Get movie image upload form & Upload movie image (1 path - i.e. /uploads but it can accept 2 methods GET & POST)
 // Protected resource that requires admin login. Normal user or not logged in personnel should not be able to access this resource.
 app

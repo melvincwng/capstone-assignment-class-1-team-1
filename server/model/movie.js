@@ -348,6 +348,30 @@ var movieDB = {
       }
     });
   },
+  deleteMovie: function (movieID, callback) {
+    var conn = db.getConnection();
+    //implement the database query and return result if successful
+    conn.connect(function (err) {
+      if (err) {
+        console.log(err);
+        return callback(err, null);
+      } else {
+        console.log("Connected!");
+        var sql = "DELETE FROM movie WHERE movieID=?";
+        conn.query(sql, [movieID], function (err, result) {
+          // Close the connection after querying to save connection resources
+          conn.end();
+          if (err) {
+            console.log(err);
+            return callback(err, null);
+          } else {
+            console.log("Delete movie - result: ", result.affectedRows);
+            return callback(null, result.affectedRows);
+          }
+        });
+      }
+    });
+  },
 };
 
 module.exports = movieDB;
