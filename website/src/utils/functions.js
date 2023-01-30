@@ -430,3 +430,32 @@ export async function fetchAtoZMovies(dispatch, option, showInitialMovies) {
     return [];
   }
 }
+
+/**
+ * A utility function that fetches all movies in Z-A reverse order from the database (i.e. reverse sorted alphabetically from Z to A)
+ * Reference: https://medium.com/@techrally/react-to-async-await-553c43f243e2
+ */
+
+export async function fetchZtoAMovies(dispatch, option, showInitialMovies) {
+  try {
+    const response = await fetch(`${API_HOST}/movies/ZtoA`);
+    const data = await response.json();
+    console.log(
+      "Fetching all Z-A movies via the GET /movies/ZtoA API route: ",
+      data
+    );
+    dispatch(
+      toggleMoviesArray({
+        name: option,
+        showInitialMovies: showInitialMovies,
+        data: data,
+      })
+    );
+  } catch (error) {
+    console.log(error);
+    alert(
+      "An error occurred while fetching the Z-A movies from the database!\nPlease try again later 😔"
+    );
+    return [];
+  }
+}
