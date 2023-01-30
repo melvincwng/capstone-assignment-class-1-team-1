@@ -42,30 +42,34 @@ export const movieSlice = createSlice({
         // Have to "reset" the state of the store also upon clicking a new option on the 'Toggle' button
         switch (action.payload.name) {
           case SORT_BY_A_TO_Z:
-            const copiedArrayToSortAToZ = [...initialMoviesArray]; // Reference: shorturl.at/cqOR8
-            state.value = initialMoviesArray;
-            state.value = copiedArrayToSortAToZ.sort(function (a, b) {
-              if (a.name.toLowerCase() < b.name.toLowerCase()) {
-                return -1;
-              }
-              if (a.name.toLowerCase() > b.name.toLowerCase()) {
-                return 1;
-              }
-              return 0;
-            });
+            // This was for WDF Pure Frontend logic (without Backend API/Databases)
+            // Reference: shorturl.at/cqOR8
+            // const copiedArrayToSortAToZ = [...initialMoviesArray];
+            // state.value = initialMoviesArray;
+            // state.value = copiedArrayToSortAToZ.sort(function (a, b) {
+            //   if (a.name.toLowerCase() < b.name.toLowerCase()) {
+            //     return -1;
+            //   }
+            //   if (a.name.toLowerCase() > b.name.toLowerCase()) {
+            //     return 1;
+            //   }
+            //   return 0;
+            // });
             break;
           case SORT_BY_Z_TO_A:
-            const copiedArrayToSortZToA = [...initialMoviesArray]; // Reference: shorturl.at/cqOR8
-            state.value = initialMoviesArray;
-            state.value = copiedArrayToSortZToA.sort(function (a, b) {
-              if (a.name.toLowerCase() < b.name.toLowerCase()) {
-                return 1;
-              }
-              if (a.name.toLowerCase() > b.name.toLowerCase()) {
-                return -1;
-              }
-              return 0;
-            });
+            // This was for WDF Pure Frontend logic (without Backend API/Databases)
+            // Reference: shorturl.at/cqOR8
+            // const copiedArrayToSortZToA = [...initialMoviesArray];
+            // state.value = initialMoviesArray;
+            // state.value = copiedArrayToSortZToA.sort(function (a, b) {
+            //   if (a.name.toLowerCase() < b.name.toLowerCase()) {
+            //     return 1;
+            //   }
+            //   if (a.name.toLowerCase() > b.name.toLowerCase()) {
+            //     return -1;
+            //   }
+            //   return 0;
+            // });
             break;
           case HIDE_PAST_MOVIES:
             state.value = initialMoviesArray;
@@ -83,30 +87,32 @@ export const movieSlice = createSlice({
         // If user made changes to the movies (e.g. add new movie, delete movie(s), etc.), then we use the movies from sessionStorage (updated movies array)
         switch (action.payload.name) {
           case SORT_BY_A_TO_Z:
-            state.value = JSON.parse(sessionStorage.getItem("movies")).sort(
-              function (a, b) {
-                if (a.name.toLowerCase() < b.name.toLowerCase()) {
-                  return -1;
-                }
-                if (a.name.toLowerCase() > b.name.toLowerCase()) {
-                  return 1;
-                }
-                return 0;
-              }
-            );
+            // This was for WDF Pure Frontend logic (without Backend API/Databases)
+            // state.value = JSON.parse(sessionStorage.getItem("movies")).sort(
+            //   function (a, b) {
+            //     if (a.name.toLowerCase() < b.name.toLowerCase()) {
+            //       return -1;
+            //     }
+            //     if (a.name.toLowerCase() > b.name.toLowerCase()) {
+            //       return 1;
+            //     }
+            //     return 0;
+            //   }
+            // );
             break;
           case SORT_BY_Z_TO_A:
-            state.value = JSON.parse(sessionStorage.getItem("movies")).sort(
-              function (a, b) {
-                if (a.name.toLowerCase() < b.name.toLowerCase()) {
-                  return 1;
-                }
-                if (a.name.toLowerCase() > b.name.toLowerCase()) {
-                  return -1;
-                }
-                return 0;
-              }
-            );
+            // This was for WDF Pure Frontend logic (without Backend API/Databases)
+            // state.value = JSON.parse(sessionStorage.getItem("movies")).sort(
+            //   function (a, b) {
+            //     if (a.name.toLowerCase() < b.name.toLowerCase()) {
+            //       return 1;
+            //     }
+            //     if (a.name.toLowerCase() > b.name.toLowerCase()) {
+            //       return -1;
+            //     }
+            //     return 0;
+            //   }
+            // );
             break;
           case HIDE_PAST_MOVIES:
             state.value = JSON.parse(sessionStorage.getItem("movies")).filter(
