@@ -62,7 +62,7 @@ export const movieSlice = createSlice({
             state.value = state.value.filter(movie => movie.active === NO);
             break;
           case SHOW_ALL_MOVIES:
-            state.value = initialMoviesArray;
+            state.value = action.payload.data;
             break;
         }
       } else {
@@ -97,7 +97,7 @@ export const movieSlice = createSlice({
             state.value = JSON.parse(sessionStorage.getItem("movies")).filter(movie => movie.active === NO);
             break;
           case SHOW_ALL_MOVIES:
-            state.value = JSON.parse(sessionStorage.getItem("movies"));
+            state.value = action.payload.data;
             break;
         }
       }
