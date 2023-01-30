@@ -54,7 +54,7 @@ export default function UpdateIndividualMoviePage() {
 
       // Approach 2 (for WDF): This updates the selected movie details in sessionStorage.
       // Pure FE/WDF approach is to update the movie details in sessionStorage so that when user navigates back to the RetrieveMoviePage, the updated movie details will be displayed.
-      // Also in the RetrieveMoviePage, some of the 'Toggle' or 'Filter' features might still be dependent on sessionStorage, hence to update this too.
+      // Also in the RetrieveMoviePage OR even PinnedMoviesPage, some of the 'Toggle', 'Filter' and 'Pinned Movies' features might still be dependent on sessionStorage, hence to update this too.
       updateSelectedMovie(selectedMovie);
 
       // After updating the movie (be it approach 1 or 2), we set the state 'updateMovieSuccess' to true so that the RootPage (containing RetrieveMoviePage) can be re-rendered with the updated movie details
