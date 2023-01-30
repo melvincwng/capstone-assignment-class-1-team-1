@@ -239,7 +239,7 @@ export const ABOUT_US_DATA = [
     imageURL: "https://avatars.githubusercontent.com/u/116081202?v=4",
     frontCardName: "Sean Ng",
     frontCardTextOne:
-      "Sean brings more than 20 years of experience in IT project management and creative leadership—along with a passion for teaching and community-building—to his work as a consultant and coach. For this project he has develop a feature that gets the movie sorted in A to Z ",
+      "Sean brings more than 20 years of experience in IT project management and creative leadership—along with a passion for teaching and community-building—to his work as a consultant and coach. For this project he has developed a feature that gets movies sorted in A to Z order.",
     frontCardTextTwo: "👉 Hover over the card to find out more",
     backCardTextOne: "Additional Details:",
     backCardTextTwoArray: [
@@ -247,8 +247,6 @@ export const ABOUT_US_DATA = [
       "Complete tasks in areas of expertise",
       "Deliver project responsibilities within deadlines",
       "Communicate with project lead on roadblocks",
-      "Document progress, setbacks, and new processes",
-
     ],
     githubText: "GitHub Profile:",
     githubURL: "https://github.com/P7461085",
