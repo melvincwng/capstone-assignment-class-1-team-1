@@ -98,7 +98,7 @@ export default function LoginPage({ setLogin, setLoading }) {
       }, 1500);
     } catch (error) {
       alert(
-        "Login failed! \nPlease enter a valid email / phone number & password 😞"
+        "Login failed 😞!\n\nPossible reasons:\n1. Please enter a valid email / phone number & password!\n2. Please ensure you only have 1 login session! Multiple login sessions are not allowed!\n3. If all fails, please clear your browsing data (i.e. Browsing history/Cookes/Cache) & try to login again!"
       );
       console.log(error);
     }
