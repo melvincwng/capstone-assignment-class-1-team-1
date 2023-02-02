@@ -28,7 +28,7 @@ To run the web application locally, follow the steps below:
 
 1. Clone the repository using `git clone <REPOSITORY_ADDRESS>` command.
 2. Open the repository using a code editor like VS Code.
-3. You should see 2 folders titled `website` & `server`.
+3. At the root of the project, you should see 2 folders titled `website` & `server`. The 3rd folder `.github` contains various automation related scripts that are used by GitHub Actions to automatically add reviewers & assignees to pull requests (**advanced feature**).
 4. Open the first terminal window & change directory into the `server` folder by entering the commands `cd server`. Once there, install all the dependencies using `npm install` command.
 5. Start the server using the command `nodemon server.js`.
 6. Open a second terminal window & change directory into the `website` folder by entering the command `cd website`. Once there, install all the dependencies using `npm install` command.
@@ -53,11 +53,11 @@ To run the web application locally, follow the steps below:
 
 ## Things to take note:
 
-1. Only **ONE** login session is allowed at anytime.
-2. Ensure both your website & server are running at the correct ports. Website (***http://127.0.0.1:5500***) & server (**_http://localhost:8081_**)
-3. If you are facing issues logging in despite entering the correct email & password AND have ensured that your website & server are running at the correct ports, as a last resort, please kindly clear your browser's cache & cookies. The JWT token in the browser's cookies might still be in the browser, hence causing the login to fail.
-4. If you are facing server-side/backend related issues, it could be due to the custom middleware ` verifyAgainstCSRFAttacks` which I have written in verificationLib.js. In short, this is a custom middleware that helps to mitigate against CSRF attacks by blocking out requests that came from untrusted/unauthorized origins.
-5. You can **disable** that particular middleware by commenting out Line 65 in app.js `app.use(verificationLib.verifyAgainstCSRFAttacks);`if it's causing backend related issues when you are testing the application locally. On my end, I have tested the application locally and it works fine with that custom protective middleware enabled.
+1. Only **ONE** login session is allowed at anytime. When you wish to end your session, kindly make sure to click the 'Logout' button.
+2. Ensure both your website & server are running at the correct ports - i.e. Website (***http://127.0.0.1:5500***) & Server (**_http://localhost:8081_**)
+3. If you are facing issues logging in despite entering the correct email & password AND have ensured that your website & server are running at the correct ports, as a last resort, please kindly clear your browser's cache & cookies. Your browser might still contain the cookie containing the JWT token, hence this might cause future login attempts to fail. Clearing the cookies in your browser will resolve this issue.
+4. If you are facing server-side/backend related issues, it could be due to the custom middleware `verifyAgainstCSRFAttacks` which I have written in verificationLib.js. In short, this is a custom middleware that helps to mitigate against CSRF attacks by blocking out requests that came from untrusted/unauthorized origins.
+5. You can **disable** that particular middleware by commenting out Line 65 in app.js - `app.use(verificationLib.verifyAgainstCSRFAttacks)` if it's causing backend related issues when you are testing the application locally. On my end, I have tested the application locally and it works fine with that custom protective middleware enabled.
 6. If for any reason, you wish to test our backend API endpoints via POSTMAN, you can do by finding the relevant POSTMAN collections in the `/postman` folder of the server directory. Import those POSTMAN collections to your desktop POSTMAN app, and you can start testing the API endpoints.
 7. However, do take note that, when hitting Admin protected API endpoints via POSTMAN, remember to manually add a Cookie header in your Request Header accompanied with the relevant JWT token/value. This step is important for admin protected APIs. Without it, admin APIs will return an unauthorized error object. You can refer to a document titled `Postman_Testing_FYI.pdf` in the postman folder for more details.
 
@@ -70,3 +70,5 @@ Class 1 Team 1:
 3. Ng Chye Yong (P7461085) 🥶 - **Team Member**
 
 <img src="./website/src/img/demo.jpg" alt="Homepage Image"/>
+
+© 2023 IT8907-FCP Class 1 Team 1
