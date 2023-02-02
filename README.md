@@ -1,4 +1,4 @@
-# WMF/WDF Assignment 2 (CA2) - Movie Management System
+# IT8907-FCP Assignment (CA1 & CA2) - Movie Management System
 
 This full-stack web application allows an admin to manage a list of movies in the system. Using this application, the admin can:
 
