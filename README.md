@@ -34,7 +34,7 @@ To run the web application locally, follow the steps below:
 6. Open a second terminal window & change directory into the `website` folder by entering the command `cd website`. Once there, install all the dependencies using `npm install` command.
 7. Run the command `npm run start` to allow Babel to transpile the code. An `/output` folder should appear after transpilation.
 8. Open a third terminal window & `cd website`. This time round, run the command `npm run build` to allow Webpack to transpile once again and bundle the code. A `/dist` folder should appear after transpilation.
-9. Right click the index.html file (in the root directory) & click on 'Open with Live Server' to start the web application. To open the HTML file with a local development live server, please kindly that you have installed beforehand the [Live Server extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) in your VS Code editor.
+9. Right click the index.html file (in the root directory) & click on 'Open with Live Server' to start the web application. To open the HTML file with a local development live server, please kindly ensure that you have installed beforehand the [Live Server extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) in your VS Code editor.
 10. Kindly ensure that your website is started at ***http://127.0.0.1:5500*** and your server is started at **_http://localhost:8081_**.
 
 ## Login credentials:
