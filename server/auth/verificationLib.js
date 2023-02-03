@@ -49,7 +49,7 @@ var verificationLib = {
       "http://34.231.168.234:8081",
       "https://sp-cet-capstone.github.io",
       "http://18.140.253.227:8081",
-      "https://18.140.253.227:8081",
+      "https://movies.sp-cet-capstone-backend.tech",
     ];
     const requestComesFromATrustedDomain = arrayOfTrustedDomains.includes(
       req.headers.origin
