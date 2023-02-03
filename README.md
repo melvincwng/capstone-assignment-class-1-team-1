@@ -87,6 +87,10 @@ Class 1 Team 1:
 2. Kua Zi Lin (P7461142) 👿 - **Team Member**
 3. Ng Chye Yong (P7461085) 🥶 - **Team Member**
 
+We had regular meetings/standups to update each other on our progress & to ensure that the project deliverables (and many additional features) are met within the stipulated timeline.
+
+Our GitHub Projects Kanban Board can be found here: https://github.com/orgs/SP-CET-Capstone/projects/11/views/1
+
 ## Live Demo:
 
 https://sp-cet-capstone.github.io/capstone-assignment-class-1-team-1/website/index.html
@@ -97,7 +101,8 @@ Frontend App:
 
 Backend App:
 
-- Hosted on **AWS** (utilizing various AWS services such as EC2, RDS, Route53, ACM, ALB, .tech domain)
+- Hosted on **AWS** (utilizing various AWS services such as EC2, RDS, Route53, ACM, ALB)
+- Utilizing a .tech domain: https://movies.sp-cet-capstone-backend.tech
 
 <img src="./website/src/img/demo.jpg" alt="Homepage Image"/>
 
