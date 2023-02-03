@@ -32,7 +32,7 @@ var verificationLib = {
      *        - We implemented the core logic of Solution C in this middleware 'verifyAgainstCSRFAttacks' to check for potential CSRF attacks & reject those requests & log them to the console if they are suspected CSRF attacks.
      *        - Refer to Reference 5 & 6 for more additional information on SOP/CORS/CSRF.
      * For the scope of this project, and given time constraints, we will be using approach C to help mitigate against CSRF attacks.
-     * To add more trusted cross-origin domains, continue to add them to the 'arrayOfTrustedCrossOriginDomains' below.
+     * To add more trusted cross-origin domains, continue to add them to the 'arrayOfTrustedDomains' below.
      * Reference 1: https://stackoverflow.com/questions/24680302/csrf-protection-with-cors-origin-header-vs-csrf-token
      * Reference 2: https://bit.ly/3HhVx83
      * Reference 3: https://developers.google.com/search/blog/2020/01/get-ready-for-new-samesitenone-secure
@@ -41,42 +41,44 @@ var verificationLib = {
      * Reference 6: https://security.stackexchange.com/questions/97825/is-cors-helping-in-anyway-against-cross-site-forgery
      */
 
-    // A) Check if request comes from a trusted CROSS-ORIGIN domain OR
-    const arrayOfTrustedCrossOriginDomains = [
+    // A) Check if request comes from a trusted domain OR
+    const arrayOfTrustedDomains = [
       "http://127.0.0.1:5500",
       "http://localhost:5500",
       "http://localhost:8081",
       "http://34.231.168.234:8081",
+      "https://sp-cet-capstone.github.io",
+      "http://18.140.253.227:8081",
+      "https://18.140.253.227:8081",
     ];
-    const requestComesFromATrustedCrossOriginDomain =
-      arrayOfTrustedCrossOriginDomains.includes(req.headers.origin);
+    const requestComesFromATrustedDomain = arrayOfTrustedDomains.includes(
+      req.headers.origin
+    );
     console.log("Request header origin:", JSON.stringify(req.headers.origin));
     console.log(
-      "Did request come from a trusted cross-origin domain:",
-      requestComesFromATrustedCrossOriginDomain
+      "Did request come from a trusted domain:",
+      requestComesFromATrustedDomain
     );
 
     // B) Check if request comes from the SAME ORIGIN as server (e.g. we are using the browser to directly hit the server endpoint - e.g. http://localhost:8081/genres)
     // If request comes from the same origin as server, then req.headers.origin will be undefined (based on Reference 2 & personal observation in Network tab of Chrome Dev Tools)
+    // This is only for /GET requests. For /POST, /PUT, /DELETE requests, req.headers.origin will be the same as the server's origin (e.g. http://localhost:8081) - hence we need to add the server's domain in the 'arrayOfTrustedDomains' above
     const requestComesFromSameOriginAsServer = req.headers.origin === undefined;
     console.log(
       "Did request come from the same origin/domain as the server:",
       requestComesFromSameOriginAsServer
     );
 
-    // C) If request comes from a trusted cross-origin domain OR the same origin as server, then we allow the request. If not, we reject the request.
-    if (
-      requestComesFromATrustedCrossOriginDomain ||
-      requestComesFromSameOriginAsServer
-    ) {
+    // C) If request comes from a trusted domain OR the same origin as server, then we allow the request. If not, we reject the request.
+    if (requestComesFromATrustedDomain || requestComesFromSameOriginAsServer) {
       console.log(
-        "ALLOWED as - either a) Request header's 'origin' field comes from a trusted cross-origin domain OR b) Request comes from the same origin as server ✅✅✅!",
+        "ALLOWED as - either a) Request header's 'origin' field comes from a trusted domain OR b) Request comes from the same origin as server ✅✅✅!",
         req.headers.origin
       );
       next();
     } else {
       console.log(
-        "Request header's 'origin' field A) DOES NOT come from a trusted cross-origin domain AND b) DOES NOT come from the same origin/domain as the server ❌❌❌!",
+        "Request header's 'origin' field A) DOES NOT come from a trusted domain AND b) DOES NOT come from the same origin/domain as the server ❌❌❌!",
         req.headers.origin
       );
       console.log(
