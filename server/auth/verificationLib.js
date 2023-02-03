@@ -47,7 +47,6 @@ var verificationLib = {
       "http://localhost:5500",
       "http://localhost:8081",
       "http://34.231.168.234:8081",
-      "https://sp-cet-capstone.github.io",
     ];
     const requestComesFromATrustedCrossOriginDomain =
       arrayOfTrustedCrossOriginDomains.includes(req.headers.origin);
