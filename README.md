@@ -87,7 +87,7 @@ Class 1 Team 1:
 2. Kua Zi Lin (P7461142) 👿 - **Team Member**
 3. Ng Chye Yong (P7461085) 🥶 - **Team Member**
 
-We had regular standups to update each other on our progress & to ensure that the project deliverables (and many additional features) are met within the stipulated timeline.
+We had regular meetings/standups to update each other on our progress & to ensure that the project deliverables (and many additional features) are met within the stipulated timeline.
 
 Our GitHub Projects Kanban Board can be found here: https://github.com/orgs/SP-CET-Capstone/projects/11/views/1
 
