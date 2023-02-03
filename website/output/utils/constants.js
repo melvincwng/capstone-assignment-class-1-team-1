@@ -14,7 +14,7 @@ export const NAVBAR_OPTIONS = {
 };
 
 // export const API_HOST = "http://localhost:8081";
-export const API_HOST = "http://18.140.253.227:8081";
+export const API_HOST = "https://18.140.253.227:8081";
 export const YES = "Y";
 export const NO = "N";
 export const SORT_BY_A_TO_Z = "A-Z ↓";
