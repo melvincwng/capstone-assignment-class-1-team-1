@@ -14,7 +14,8 @@ export const NAVBAR_OPTIONS = {
   ABOUT_US: "About Us",
 };
 
-export const API_HOST = "http://localhost:8081";
+// export const API_HOST = "http://localhost:8081";
+export const API_HOST = "http://3.86.129.158:8081";
 export const YES = "Y";
 export const NO = "N";
 export const SORT_BY_A_TO_Z = "A-Z ↓";
