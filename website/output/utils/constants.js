@@ -157,7 +157,7 @@ export const ABOUT_US_DATA = [{
   frontCardTextOne: "Melvin is a software developer & the technical lead for this Full-stack Capstone Project (FCP). As the project's leader, he is responsible for creating this full-stack web app - both the basic & advanced features. He enjoys tinkering with new frameworks & languages in his free time to build software apps.",
   frontCardTextTwo: "👉 Hover over the card to find out more",
   backCardTextOne: "Additional Details:",
-  backCardTextTwoArray: ["Set up the core code repository for the team to work on.", "Implemented this full-stack web app basic features.", "Implemented numerous advanced/additional features.", "Reviewed incoming PRs, fixed bugs & provided tech support to the team."],
+  backCardTextTwoArray: ["Set up the main code repository for the team to work on", "Implemented this full-stack web app basic features", "Implemented numerous advanced/additional features", "Handled the cloud deployment for both FE & BE apps", "Involved in QA testing, fixed bugs, added documentation, reviewed incoming PRs & provided technical support to the team"],
   githubText: "GitHub Profile:",
   githubURL: "https://github.com/melvincwng",
   clickHereText: "Click here"
@@ -167,7 +167,7 @@ export const ABOUT_US_DATA = [{
   frontCardTextOne: "Kua is a software developer & one of the team members for this Full-stack Capstone Project (FCP). He has implemented a feature that gets movies sorted in Z to A order & ensured good team-work and collaboration with the team-leader (Melvin) and another team member (Sean).",
   frontCardTextTwo: "👉 Hover over the card to find out more",
   backCardTextOne: "Additional Details:",
-  backCardTextTwoArray: ["Software Debugging and Review", "Implement the feature that gets the movie sorted in Z to A", "Update and beautify the readme document", "Update the review the Team Pull Request"],
+  backCardTextTwoArray: ["Implement the feature that gets the movie sorted in Z to A", "QA Testing", "Software Debugging & Review", "Update and beautify the readme document", "Update & review pull requests"],
   githubText: "GitHub Profile:",
   githubURL: "https://github.com/vincentkua",
   clickHereText: "Click here"
@@ -177,7 +177,7 @@ export const ABOUT_US_DATA = [{
   frontCardTextOne: "Sean brings more than 20 years of experience in IT project management and creative leadership — along with a passion for teaching and community-building — to his work as a consultant and coach. For this project he has developed a feature that gets movies sorted in A to Z order.",
   frontCardTextTwo: "👉 Hover over the card to find out more",
   backCardTextOne: "Additional Details:",
-  backCardTextTwoArray: ["Solve project objectives", "Complete tasks in areas of expertise", "Deliver project responsibilities within deadlines", "Communicate with project lead on roadblocks"],
+  backCardTextTwoArray: ["Implement the feature that gets the movie sorted in A to Z", "Solve project objectives", "Complete tasks in areas of expertise", "Deliver project responsibilities within deadlines", "Communicate with project lead on roadblocks"],
   githubText: "GitHub Profile:",
   githubURL: "https://github.com/P7461085",
   clickHereText: "Click here"
