@@ -30,8 +30,9 @@ export default function Movie({
   });
   const pinnedMoviesCount = pinnedMoviesArray.length;
   const isMoviePinned = pinnedMoviesArray.filter(pinnedMovie => {
-    return pinnedMovie.movieID === movieID && pinnedMovie.name === name && pinnedMovie.description === description && pinnedMovie.releaseDate === releaseDate && pinnedMovie.imageURL === imageURL && pinnedMovie.genreID === genreID && pinnedMovie.active === active;
+    return pinnedMovie.movieID === movieID;
   }).length;
+  console.log("isMoviePinned: ", isMoviePinned);
   const moviePinnedOrUnpinnedEmoji = isMoviePinned ? "💖" : "🤍";
   const dispatch = useDispatch();
   const changeMoviePinnedStatus = () => {
