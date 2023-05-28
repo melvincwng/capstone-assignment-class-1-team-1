@@ -2,7 +2,7 @@
 // Update 28/05/2023:
 // - For password, please refer to the actual password stored in the pm2 server (SSH using PuTTy). This pw below is just for demo purposes (doesn't work)!
 // - For security reasons, make sure your DB is NOT publicly accessible (put as PRIVATE aka it's in its own private subnet) & use SECURE DB username & password. 
-//  - Take note only password can be changed in AWS RDS database after creation... username cannot be changed once RDS instance is created (aka is fixed).
+// - Take note only password can be changed in AWS RDS database after creation... username cannot be changed once RDS instance is created (aka is fixed).
 // - But if DB is in private subnet, your AWS resources or client (e.g. MySQL Workbench) will not be able it via internet
 // - To configure that aka - allow a) trusted AWS EC2 instance and/or b) MySQL Workbench to connect to our DB, we need to do the following:
 // -  A) Go to AWS RDS --> Select that DB instance --> Actions --> Click on option 'Set up EC2 connection' --> Select that particular EC2 instance you want to connect --> Press OK --> AWS will automatically generate the neccessary Target Groups for both your EC2 and RDS to allow a connection between them
@@ -21,7 +21,7 @@ var dbconnect = {
       // host: "localhost",
       host: "sp-movies-fcp-database.co0bsltnh95y.ap-southeast-1.rds.amazonaws.com",
       user: "root", // Change to your specific MySQL workbench username for it to work
-      password: "qwerty123", // Change to your specific MYSQL workbench password for it to work
+      password: "qwerty123", // Change to your specific MYSQL workbench password for it to work (NOT ACTUAL PW, just a DEMO PW - see notes above for more info!)
       database: "bdd_assignment",
     });
     return conn;
