@@ -1,4 +1,7 @@
 // FYI - Do not use 'multipleStatements: true' as a connection option as it exposes you to SQL injection attacks!
+// Update 28/05/2023:
+// - For password, please refer to the actual password stored in the pm2 server (SSH using PuTTy). This pw below is just for demo purposes (doesn't work)!
+
 var mysql = require("mysql");
 var dbconnect = {
   getConnection: function () {
