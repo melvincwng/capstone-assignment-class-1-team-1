@@ -47,6 +47,7 @@ var verificationLib = {
       "http://localhost:5500",
       "http://localhost:8081",
       "http://34.231.168.234:8081",
+      "https://melvincwng.github.io",
       "https://sp-cet-capstone.github.io",
       "http://18.140.253.227:8081",
       "https://movies.sp-cet-capstone-backend.tech",
