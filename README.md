@@ -93,7 +93,7 @@ Our GitHub Projects Kanban Board can be found here: https://github.com/orgs/SP-C
 
 ## Live Demo:
 
-https://sp-cet-capstone.github.io/capstone-assignment-class-1-team-1/website/index.html
+https://melvincwng.github.io/capstone-assignment-class-1-team-1/website/index.html
 
 Frontend App:
 
