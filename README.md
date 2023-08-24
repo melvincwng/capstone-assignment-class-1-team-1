@@ -45,7 +45,7 @@ To run the web application locally, follow the steps below:
     - Line 17 in `constants.js` file (API_HOST variable)
     - Line 6 in `databaseConfig.js` file (host parameter)
 
-## Login credentials:
+## Login credentials (For Local Testing):
 
 - **Admin Credentials (Admin Account):**
 
@@ -95,7 +95,7 @@ Our GitHub Projects Kanban Board can be found here: https://github.com/orgs/SP-C
 
 Update as of 24th Aug 2023:
 - Link: https://melvincwng.github.io/capstone-assignment-class-1-team-1/website/index.html
-- However, due to AWS costs, we have stopped hosting the backend app. Hence, certain functionalities of the live web appplication may not be available.
+- However, due to AWS costs, we have stopped hosting the backend app. Hence, certain functionalities of the live web application may not be available.
 - You can still run the project locally by following the instructions above.
 
 Frontend App:
