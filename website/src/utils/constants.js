@@ -14,8 +14,8 @@ export const NAVBAR_OPTIONS = {
   ABOUT_US: "About Us",
 };
 
-// export const API_HOST = "http://localhost:8081";
-export const API_HOST = "https://movies.sp-cet-capstone-backend.tech";
+export const API_HOST = "http://localhost:8081"; // For local development
+// export const API_HOST = "https://movies.sp-cet-capstone-backend.tech"; // For production (not in use anymore as of 24/08/2023)
 export const YES = "Y";
 export const NO = "N";
 export const SORT_BY_A_TO_Z = "A-Z ↓";

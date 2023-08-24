@@ -43,7 +43,7 @@ To run the web application locally, follow the steps below:
 11. Depending on your MySQL workbench settings, you might also need to change lines 8 & 9 in the `/server/model/databaseConfig.js` file to match your own MySQL workbench username & password. This is done so that the server can connect to the locally generated database (from step 11 earlier).
 12. Since this code repository is configured for cloud deployment, if you wish to test it locally instead, you would need to change a few parameters (to the localhost variant) such as:
     - Line 17 in `constants.js` file (API_HOST variable)
-    - Line 6 in `databaseConfig.js` file (host parameter)
+    - Line 21 in `databaseConfig.js` file (host parameter)
 
 ## Login credentials (For Local Testing):
 
