@@ -47,12 +47,12 @@ To run the web application locally, follow the steps below:
 
 ## Login credentials (For Local Testing):
 
-- **Admin Credentials (Admin Account):**
+- **Admin Credentials (Admin Account for localhost):**
 
   - Email: `admin@gmail.com`
   - Password: `password123`
 
-- **User Credentials (Public Account):**
+- **User Credentials (Public Account for localhost):**
 
   - Email: `user@gmail.com`
   - Password: `password123`
