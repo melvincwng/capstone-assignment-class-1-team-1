@@ -94,7 +94,7 @@ Our GitHub Projects Kanban Board can be found here: https://github.com/orgs/SP-C
 ## Live Demo:
 
 Update as of 24th Aug 2023:
-- Link: https://sp-cet-capstone.github.io/capstone-assignment-class-1-team-1/website/index.html
+- Link: https://melvincwng.github.io/capstone-assignment-class-1-team-1/website/index.html
 - However, due to AWS costs, we have stopped hosting the backend app. Hence, certain functionalities of the live web appplication may not be available.
 - You can still run the project locally by following the instructions above.
 
