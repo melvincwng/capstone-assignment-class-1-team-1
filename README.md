@@ -93,7 +93,10 @@ Our GitHub Projects Kanban Board can be found here: https://github.com/orgs/SP-C
 
 ## Live Demo:
 
-https://melvincwng.github.io/capstone-assignment-class-1-team-1/website/index.html
+Update as of 24th Aug 2023:
+- Link: https://sp-cet-capstone.github.io/capstone-assignment-class-1-team-1/website/index.html
+- However, due to AWS costs, we have stopped hosting the backend app. Hence, certain functionalities of the live web appplication may not be available.
+- You can still run the project locally by following the instructions above.
 
 Frontend App:
 
@@ -104,6 +107,16 @@ Backend App:
 - Hosted on **AWS** (utilizing various AWS services such as EC2, RDS, Route53, ACM, ALB)
 - Utilizing a .tech domain: https://movies.sp-cet-capstone-backend.tech
 
+## Screenshots:
+
 <img src="./website/src/img/demo.jpg" alt="Homepage Image"/>
+
+<br/>
+
+<img src="./website/src/img/demo2.jpg" alt="Homepage Image"/>
+
+<br/>
+
+<img src="./website/src/img/demo3.jpg" alt="Homepage Image"/>
 
 © 2023 IT8907-FCP Class 1 Team 1
