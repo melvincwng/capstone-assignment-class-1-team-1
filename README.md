@@ -89,7 +89,11 @@ Class 1 Team 1:
 
 We had regular meetings/standups to update each other on our progress & to ensure that the project deliverables (and many additional features) are met within the stipulated timeline.
 
-Our GitHub Projects Kanban Board can be found here: https://github.com/orgs/SP-CET-Capstone/projects/11
+Our GitHub Projects Kanban Board can be found here: 
+
+1. [Original Link](https://github.com/orgs/SP-CET-Capstone/projects/11)
+
+2. [Alternative Link - in case link 1 doesn't work](https://github.com/users/melvincwng/projects/1/views/1)
 
 ## Live Demo:
 
