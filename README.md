@@ -83,9 +83,9 @@ To run the web application locally, follow the steps below:
 
 Class 1 Team 1:
 
-1. Ng Cheng Wai Melvin (P7411407) 😎 - **Team Leader**
-2. Kua Zi Lin (P7461142) 👿 - **Team Member**
-3. Ng Chye Yong (P7461085) 🥶 - **Team Member**
+1. Ng Cheng Wai Melvin 😎 - **Team Leader**
+2. Kua Zi Lin 👿 - **Team Member**
+3. Ng Chye Yong 🥶 - **Team Member**
 
 We had regular meetings/standups to update each other on our progress & to ensure that the project deliverables (and many additional features) are met within the stipulated timeline.
 
